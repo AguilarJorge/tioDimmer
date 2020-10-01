@@ -1,0 +1,149 @@
+@import "./vars";
+@import "./mixins";
+
+body{
+  overflow-x: hidden;
+  color: #666;
+  padding: 0;
+  margin: 0 auto;
+  *{
+    font-family: 'Inter', sans-serif;
+    @include mobile{
+      cursor: default !important;
+    }
+  }
+  p{
+    margin: 0;
+  }
+  a {
+    color: #666;
+    text-decoration: none;
+  }
+  ul, li{
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background: #dcdcdc;
+}
+::-webkit-scrollbar-thumb {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background: -webkit-linear-gradient(-45deg, #dcdcdc 10%, #bfbebe 91%);
+  background: linear-gradient(135deg, #dcdcdc 10%, #bfbebe 91%);
+}
+
+//Vista 2 para el Home
+.#{$pfx}slider{
+  background-color: #ebebeb;
+  .#{$pfx}container{
+    @include container(100%);
+    @include flex(column, nowrap, center, flex-end, center);
+    height: 500px;
+    position: relative;
+    overflow: hidden;
+    &:hover{
+      .manualControls{
+        .control{
+          opacity: 1;
+          transform: translateY(-50%) !important;
+        }
+      }
+    }
+    .joWrapperSlider{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      .imgSlider{
+        @include imagen;
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        transition: ease all .5s;
+        &.activo{
+          left: 100%;
+          transform: translateX(-100%);
+          transition-property: transform;
+        }
+      }
+    }
+    .manualControls{
+      .control{
+        @include flex(column, nowrap, center, center, center);
+        position: absolute;
+        top: 50%;
+        width: 50px;
+        height: 80px;
+        opacity: 0;
+        background-color: $blanco;
+        transform: translateY(-50%);
+        box-shadow: 0 0 10px 0 rgba($negro,.2);
+        transition: ease all .3s;
+        cursor: pointer;
+        &.at{
+          left: 0;
+          transform: translateY(-50%) translateX(-100%);
+          &:before, &:after{
+            transform-origin: left;
+          }
+        }
+        &.av{
+          right: 0;
+          transform: translateY(-50%) translateX(100%);
+          &:before, &:after{
+            transform-origin: right;
+          }
+        }
+        &:before, &:after{
+          content: "";
+          position: absolute;
+          width: 20px;
+          height: 1px;
+          background-color: var(--prim);
+          transform: rotate(-50deg);
+        }
+        &:after{
+          transform: rotate(50deg);
+        }
+      }
+    }
+    .joDots{
+      @include flex(row, wrap, center, center, center);
+      position: relative;
+      .joDot{
+        @include flex(column, nowrap, center, center, center);
+        width: 12px;
+        height: 12px;
+        margin: 10px 3px;
+        color: $blanco;
+        &.activo{
+          &:before{
+            width: 10px;
+            height: 10px;
+            background-color: currentColor;
+          }
+        }
+        &:before{
+          content: "";
+          width: 5px;
+          height: 5px;
+          border-radius: 50%;
+          background-color: #ebebeb;
+          border: 1px solid rgba($negro,.2);
+          transition: ease all .2s;
+        }
+      }
+    }
+    @include mobile{
+      .manualControls{
+        display: none;
+      }
+    }
+  }
+}

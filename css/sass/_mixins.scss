@@ -1,0 +1,51 @@
+@mixin container($width: 90%) {
+    width: $width;
+    margin: 0 auto;
+    max-width: 1600px;
+}
+@mixin flex ($dir: row, $wrap: wrap, $ai: center, $jc: center, $ac: center){
+    display: flex;
+    flex-direction: $dir;
+    flex-wrap: $wrap;
+    align-items: $ai;
+    justify-content: $jc;
+    align-content: $ac;
+}
+@mixin imagen ($url: '', $size: cover, $posicion: center, $repeat: no-repeat, $parallax: false) {
+    @if  $url != '' {
+        background-image: url($url);
+    }
+    background-size: $size;
+    background-position: $posicion;
+    background-repeat: $repeat;
+    @if $parallax == true {
+        background-attachment: fixed;
+    }
+}
+@mixin ellipsis {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+@mixin ellipsisParrafo($lineas: 3){
+    text-align: left;
+    -webkit-line-clamp: $lineas;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+}
+
+// Media Queries
+@mixin desktop {
+    @media only screen and (max-width: 1024px){ @content; }
+}
+@mixin tablet {
+    @media only screen and (max-width: 768px){ @content; }
+}
+@mixin mobile {
+    @media only screen and (max-width: 480px){ @content; }
+}
+@mixin responsivo($medida) {
+    @media only screen and (max-width: $medida){ @content; }
+}
