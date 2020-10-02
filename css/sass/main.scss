@@ -6,6 +6,7 @@ body{
   color: #666;
   padding: 0;
   margin: 0 auto;
+  --currencyPrefix: "$";
   *{
     font-family: 'Inter', sans-serif;
     @include mobile{
@@ -37,15 +38,14 @@ body{
   background: linear-gradient(135deg, #dcdcdc 10%, #bfbebe 91%);
 }
 
-//Vista 2 para el Home
+
 .#{$pfx}slider{
-  background-color: #ebebeb;
+  background-color: #000;
   .#{$pfx}container{
     @include container(100%);
     @include flex(column, nowrap, center, flex-end, center);
     height: 500px;
     position: relative;
-    overflow: hidden;
     &:hover{
       .manualControls{
         .control{
@@ -54,10 +54,11 @@ body{
         }
       }
     }
-    .joWrapperSlider{
+    .wrapperSlider{
       position: absolute;
       width: 100%;
       height: 100%;
+      overflow: hidden;
       .imgSlider{
         @include imagen;
         position: absolute;
@@ -87,17 +88,25 @@ body{
         transition: ease all .3s;
         cursor: pointer;
         &.at{
-          left: 0;
+          left: 5%;
           transform: translateY(-50%) translateX(-100%);
           &:before, &:after{
             transform-origin: left;
           }
         }
         &.av{
-          right: 0;
+          right: 5%;
           transform: translateY(-50%) translateX(100%);
           &:before, &:after{
             transform-origin: right;
+          }
+        }
+        &.circular{
+          height: 50px;
+          border-radius: 50%;
+          &::before, &:after{
+            width: 10px;
+            height: 2px;
           }
         }
         &:before, &:after{
@@ -105,7 +114,7 @@ body{
           position: absolute;
           width: 20px;
           height: 1px;
-          background-color: var(--prim);
+          background-color: $negro;
           transform: rotate(-50deg);
         }
         &:after{
@@ -113,26 +122,26 @@ body{
         }
       }
     }
-    .joDots{
+    .dimerDots{
       @include flex(row, wrap, center, center, center);
       position: relative;
-      .joDot{
+      .dimerDot{
         @include flex(column, nowrap, center, center, center);
-        width: 12px;
-        height: 12px;
+        width: 17px;
+        height: 17px;
         margin: 10px 3px;
         color: $blanco;
         &.activo{
           &:before{
-            width: 10px;
-            height: 10px;
+            width: 15px;
+            height: 15px;
             background-color: currentColor;
           }
         }
         &:before{
           content: "";
-          width: 5px;
-          height: 5px;
+          width: 10px;
+          height: 10px;
           border-radius: 50%;
           background-color: #ebebeb;
           border: 1px solid rgba($negro,.2);
@@ -143,6 +152,531 @@ body{
     @include mobile{
       .manualControls{
         display: none;
+      }
+    }
+  }
+}
+.#{$pfx}menu{
+  background-color: $negro;
+  .#{$pfx}container{
+    @include container;
+    padding: 20px 0;
+    .topBar{
+      @include flex($jc: space-between);
+      width: 100%;
+      padding-bottom: 10px;
+      .logo{
+        @include imagen('', contain, left);
+        width: 300px;
+        height: 100px;
+        margin-right: 20px;
+      }
+      .icons{
+        @include flex;
+        .#{$pfx}dropdown{
+          margin-right: 20px;
+          color: $blanco;
+          font-size: 14px;
+          font-weight: 600;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+          position: relative;
+          cursor: pointer;
+          &.activo{
+            .dropHeader{
+              &:after{
+                transform: rotate(180deg);
+              }
+            }
+          }
+          .dropHeader{
+            @include flex;
+            padding-right: 20px;
+            position: relative;
+            &:after{
+              content: "";
+              position: absolute;
+              right: 0;
+              border-top: 8px solid $blanco;
+              border-left: 6px solid transparent;
+              border-right: 6px solid transparent;
+              transition: ease all .3s;
+            }
+            .currentValue{
+              margin-left: 5px;
+            }
+          }
+          .dropOptions{
+            display: none;
+            position: absolute;
+            top: 100%;
+            width: 100%;
+            margin-top: 10px;
+            text-align: center;
+            background-color: #000;
+            z-index: $zdrop;
+            &:hover{
+              .option{
+                opacity: .5;
+              }
+            }
+            .option{
+              padding: 10px 20px;
+              transition: ease all .3s;
+              &:hover{
+                opacity: 1;
+                background-color: rgba($blanco,.05);
+              }
+            }
+          }
+        }
+        .icono{
+          width: 35px;
+          height: 35px;
+          margin-left: 20px;
+          cursor: pointer;
+          svg{
+            overflow: hidden;
+            path, circle{
+              fill: none;
+              stroke: $blanco;
+              stroke-miterlimit: 10;
+              stroke-width: 2;
+            }
+          }
+        }
+      }
+    }
+    .bottomBar{
+      padding-top: 10px;
+      border-top: 1px dashed $secundario;
+      .menuLinks{
+        @include flex;
+        >.link{
+          margin: 5px 10px;
+        }
+        .link{
+          position: relative;
+          min-width: max-content;
+          &:hover{
+            >a{
+              &:after{
+                width: 100%;
+              }
+            }
+            >.subMenu{
+              opacity: 1;
+              visibility: visible;
+              transform: translateX(-50%);
+            }
+          }
+          a{
+            color: $blanco;
+            font-size: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+            &:after{
+              content: "";
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              margin: 0 auto;
+              width: 0;
+              height: 2px;
+              background-color: $primario;
+              transition: ease all .3s;
+            }
+          }
+          .subMenu{
+            position: absolute;
+            left: 50%;
+            top: 100%;
+            min-width: 100%;
+            margin-top: 10px;
+            background-color: #000;
+            transform: translateX(-50%) translateY(20px);
+            visibility: hidden;
+            opacity: 0;
+            z-index: $zmenu;
+            transition: ease all .3s;
+            &:hover{
+              >.link{
+                opacity: .5;
+              }
+            }
+            &:before{
+              content: "";
+              position: absolute;
+              bottom: 100%;
+              width: 100%;
+              height: 10px;
+              display: block;
+            }
+            >.link{
+              display: flex;
+              text-align: center;
+              transition: ease all .3s;
+              &:hover{
+                opacity: 1;
+                background-color: rgba($blanco,.05);
+              }
+            }
+            .link{
+              a{
+                flex-grow: 1;
+                padding: 10px;
+                &:after{
+                  display: none;
+                }
+              }
+              .subMenu{
+                top: 0;
+                left: 100%;
+                margin-top: 0;
+                transform: none;
+                &:before{
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+.#{$pfx}producto{
+  width: 25%;
+  min-width: 25%;
+  .innerProd{
+    height: calc(100% - 20px);
+    margin: 10px;
+    border-radius: 5px;
+    display: block;
+    border: 1px solid $gris;
+    background-color: $blanco;
+    overflow: hidden;
+    user-select: none;
+    transition: ease all .3s;
+    &:hover{
+      box-shadow: 0 5px 10px 0 rgba($negro,.2);
+    }
+    .imgWrapper{
+      @include flex;
+      width: 100%;
+      height: 200px;
+      box-sizing: border-box;
+      background-color: $gris;
+      .imgProd{
+        @include imagen('', contain);
+        width: calc(100% - 20px);
+        height: calc(100% - 20px);
+        margin: 10px;
+      }
+    }
+    .info{
+      padding: 20px 10px;
+      text-align: center;
+      display: block;
+      height: 180px;
+      box-sizing: border-box;
+      .prodName{
+        @include ellipsisParrafo(2);
+        margin: 0 auto;
+        margin-bottom: 10px;
+        color: $negro;
+        font-weight: 600;
+      }
+      .prodDesc{
+        @include ellipsisParrafo;
+        margin: 0 auto;
+        max-width: 80%;
+        font-size: 12px;
+        margin-bottom: 10px;
+      }
+      .precios{
+        @include flex($wrap: nowrap, $jc: space-between);
+        .precio{
+          font-size: 25px;
+          font-weight: 600;
+          color: $secundario;
+          &:before{
+            content: var(--currencyPrefix);
+            font-size: 18px;
+            text-transform: uppercase;
+          }
+        }
+        .stock{
+          @include flex($wrap: nowrap);
+          font-size: 14px;
+          font-weight: 600;
+          text-align: right;
+          &.out{
+            &:before{
+              background-color: red;
+            }
+          }
+          &:before{
+            content: "";
+            width: 10px;
+            height: 10px;
+            min-width: 10px;
+            margin-right: 5px;
+            border-radius: 50%;
+            background-color: green;
+          }
+        }
+        .precioOriginal{
+          color: red;
+          font-weight: 600;
+          text-align: right;
+          text-decoration: line-through;
+          &:before{
+            content: var(--currencyPrefix);
+            font-size: 14px;
+            text-transform: uppercase;
+          }
+        }
+      }
+    }
+    .actions{
+      @include flex;
+      padding: 20px 10px;
+      .boton{
+        margin-bottom: 30px;
+        padding: 10px 20px;
+        color: $blanco;
+        font-size: 14px;
+        font-weight: 600;
+        text-align: center;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        border-radius: 50px;
+        background-color: $secundario;
+        cursor: pointer;
+        transition: cubic-bezier(0.68, -0.55, 0.27, 1.55) all .5s;
+        &:hover{
+          transform: translateY(-5px);
+          box-shadow: 0 5px 10px 0 rgba($negro,.5);
+        }
+      }
+      .row-buttons{
+        @include flex(row, nowrap, center, space-between);
+        width: 100%;
+        .checkBox{
+          @include flex;
+          position: relative;
+          cursor: pointer;
+          input{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            opacity: 0;
+            z-index: $zup;
+            cursor: pointer;
+            &:checked{
+              ~.icon{
+                &:after{
+                  width: 80%;
+                  height: 80%;
+                }
+              }
+            }
+          }
+          .icon{
+            @include flex;
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+            border-radius: 50%;
+            border: 1px solid $secundario;
+            position: relative;
+            &:after{
+              @include flex;
+              content: "✓";
+              position: absolute;
+              width: 0;
+              height: 0;
+              color: $blanco;
+              font-size: 10px;
+              border-radius: 50%;
+              background-color: $primario;
+              transition: cubic-bezier(0.68, -0.55, 0.27, 1.55) all .3s;
+            }
+          }
+          .checkBoxLabel{
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+          }
+        }
+        .favoritos{
+          @include flex;
+          font-size: 12px;
+          font-weight: 600;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+          cursor: pointer;
+          .icono{
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+            svg{
+              overflow: hidden;
+              path{
+                fill: none;
+                stroke: red;
+                stroke-width: 2;
+                stroke-miterlimit: 10;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.#{$pfx}nuevos, .#{$pfx}ofertas{
+  .#{$pfx}container{
+    @include container;
+    padding: 50px 0 !important;
+    .encabezado{
+      color: $negro;
+      font-size: 45px;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .wrapperSlider{
+      position: relative;
+    }
+    .contenedorProds{
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      .sliderProds{
+        @include flex(row, nowrap, stretch, flex-start);
+        max-width: 100%;
+        transition: ease all .3s;
+      }
+    }
+    .controlesX{
+      .controlX{
+        @include flex(column, nowrap, center, center, center);
+        position: absolute;
+        top: 50%;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-color: $blanco;
+        transform: translateY(-50%);
+        box-shadow: 0 0 10px 0 rgba($negro,.2);
+        cursor: pointer;
+        &.at{
+          left: 0;
+          transform: translateX(-50%);
+          &:before, &:after{
+            transform-origin: left;
+          }
+        }
+        &.av{
+          right: 0;
+          transform: translateX(50%);
+          &:before, &:after{
+            transform-origin: right;
+          }
+        }
+        &:before, &:after{
+          content: "";
+          position: absolute;
+          width: 12px;
+          height: 1px;
+          background-color: $secundario;
+          transform: rotate(-50deg);
+        }
+        &:after{
+          transform: rotate(50deg);
+        }
+      }
+    }
+  }
+}
+
+
+.#{$pfx}bannerPublicidad{
+  background-color: #ebebeb;
+  padding: 20px 0 !important;
+  .#{$pfx}container{
+    @include imagen('', cover);
+    @include container;
+    height: 400px;
+    background-color: $blanco;
+  }
+}
+.#{$pfx}infoX{
+  .#{$pfx}container{
+    @include container;
+    padding: 50px 0 !important;
+    .innerInfo{
+      @include flex(row, wrap, stretch, center, center);
+      width: 100%;
+      .info{
+        width: calc(100% / 3);
+        padding: 20px !important;
+        text-align: center;
+        flex-grow: 1;
+        box-sizing: border-box;
+        &:not(:first-child){
+          border-left: 1px solid rgba($negro,.1);
+        }
+        .img{
+          @include imagen('');
+          width: 55px;
+          height: 55px;
+          margin: 0 auto !important;
+        }
+        .tit{
+          font-size: 20px;
+          text-align: center;
+          margin: 10px auto !important;
+        }
+        .sub{
+          text-align: center;
+          font-size: 13px;
+        }
+        .link{
+          display: inline-block;
+          font-size: 14px;
+          color: red;
+          text-align: center;
+          margin-top: 10px !important;
+          position: relative;
+          &:hover{
+            &:after{
+              width: 100%;
+            }
+          }
+          &:after{
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 0;
+            height: 1px;
+            margin: auto;
+            background-color: red;
+            transition: ease all .2s;
+          }
+        }
       }
     }
   }

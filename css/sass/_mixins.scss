@@ -28,7 +28,6 @@
     overflow: hidden;
 }
 @mixin ellipsisParrafo($lineas: 3){
-    text-align: left;
     -webkit-line-clamp: $lineas;
     -webkit-box-orient: vertical;
     overflow: hidden;
