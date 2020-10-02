@@ -39,317 +39,7 @@ body{
 }
 
 
-.#{$pfx}slider{
-  background-color: #000;
-  .#{$pfx}container{
-    @include container(100%);
-    @include flex(column, nowrap, center, flex-end, center);
-    height: 500px;
-    position: relative;
-    &:hover{
-      .manualControls{
-        .control{
-          opacity: 1;
-          transform: translateY(-50%) !important;
-        }
-      }
-    }
-    .wrapperSlider{
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      .imgSlider{
-        @include imagen;
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        transition: ease all .5s;
-        &.activo{
-          left: 100%;
-          transform: translateX(-100%);
-          transition-property: transform;
-        }
-      }
-    }
-    .manualControls{
-      .control{
-        @include flex(column, nowrap, center, center, center);
-        position: absolute;
-        top: 50%;
-        width: 50px;
-        height: 80px;
-        opacity: 0;
-        background-color: $blanco;
-        transform: translateY(-50%);
-        box-shadow: 0 0 10px 0 rgba($negro,.2);
-        transition: ease all .3s;
-        cursor: pointer;
-        &.at{
-          left: 5%;
-          transform: translateY(-50%) translateX(-100%);
-          &:before, &:after{
-            transform-origin: left;
-          }
-        }
-        &.av{
-          right: 5%;
-          transform: translateY(-50%) translateX(100%);
-          &:before, &:after{
-            transform-origin: right;
-          }
-        }
-        &.circular{
-          height: 50px;
-          border-radius: 50%;
-          &::before, &:after{
-            width: 10px;
-            height: 2px;
-          }
-        }
-        &:before, &:after{
-          content: "";
-          position: absolute;
-          width: 20px;
-          height: 1px;
-          background-color: $negro;
-          transform: rotate(-50deg);
-        }
-        &:after{
-          transform: rotate(50deg);
-        }
-      }
-    }
-    .dimerDots{
-      @include flex(row, wrap, center, center, center);
-      position: relative;
-      .dimerDot{
-        @include flex(column, nowrap, center, center, center);
-        width: 17px;
-        height: 17px;
-        margin: 10px 3px;
-        color: $blanco;
-        &.activo{
-          &:before{
-            width: 15px;
-            height: 15px;
-            background-color: currentColor;
-          }
-        }
-        &:before{
-          content: "";
-          width: 10px;
-          height: 10px;
-          border-radius: 50%;
-          background-color: #ebebeb;
-          border: 1px solid rgba($negro,.2);
-          transition: ease all .2s;
-        }
-      }
-    }
-    @include mobile{
-      .manualControls{
-        display: none;
-      }
-    }
-  }
-}
-.#{$pfx}menu{
-  background-color: $negro;
-  .#{$pfx}container{
-    @include container;
-    padding: 20px 0;
-    .topBar{
-      @include flex($jc: space-between);
-      width: 100%;
-      padding-bottom: 10px;
-      .logo{
-        @include imagen('', contain, left);
-        width: 300px;
-        height: 100px;
-        margin-right: 20px;
-      }
-      .icons{
-        @include flex;
-        .#{$pfx}dropdown{
-          margin-right: 20px;
-          color: $blanco;
-          font-size: 14px;
-          font-weight: 600;
-          letter-spacing: 1px;
-          text-transform: uppercase;
-          position: relative;
-          cursor: pointer;
-          &.activo{
-            .dropHeader{
-              &:after{
-                transform: rotate(180deg);
-              }
-            }
-          }
-          .dropHeader{
-            @include flex;
-            padding-right: 20px;
-            position: relative;
-            &:after{
-              content: "";
-              position: absolute;
-              right: 0;
-              border-top: 8px solid $blanco;
-              border-left: 6px solid transparent;
-              border-right: 6px solid transparent;
-              transition: ease all .3s;
-            }
-            .currentValue{
-              margin-left: 5px;
-            }
-          }
-          .dropOptions{
-            display: none;
-            position: absolute;
-            top: 100%;
-            width: 100%;
-            margin-top: 10px;
-            text-align: center;
-            background-color: #000;
-            z-index: $zdrop;
-            &:hover{
-              .option{
-                opacity: .5;
-              }
-            }
-            .option{
-              padding: 10px 20px;
-              transition: ease all .3s;
-              &:hover{
-                opacity: 1;
-                background-color: rgba($blanco,.05);
-              }
-            }
-          }
-        }
-        .icono{
-          width: 35px;
-          height: 35px;
-          margin-left: 20px;
-          cursor: pointer;
-          svg{
-            overflow: hidden;
-            path, circle{
-              fill: none;
-              stroke: $blanco;
-              stroke-miterlimit: 10;
-              stroke-width: 2;
-            }
-          }
-        }
-      }
-    }
-    .bottomBar{
-      padding-top: 10px;
-      border-top: 1px dashed $secundario;
-      .menuLinks{
-        @include flex;
-        >.link{
-          margin: 5px 10px;
-        }
-        .link{
-          position: relative;
-          min-width: max-content;
-          &:hover{
-            >a{
-              &:after{
-                width: 100%;
-              }
-            }
-            >.subMenu{
-              opacity: 1;
-              visibility: visible;
-              transform: translateX(-50%);
-            }
-          }
-          a{
-            color: $blanco;
-            font-size: 14px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            position: relative;
-            &:after{
-              content: "";
-              position: absolute;
-              bottom: 0;
-              left: 0;
-              right: 0;
-              margin: 0 auto;
-              width: 0;
-              height: 2px;
-              background-color: $primario;
-              transition: ease all .3s;
-            }
-          }
-          .subMenu{
-            position: absolute;
-            left: 50%;
-            top: 100%;
-            min-width: 100%;
-            margin-top: 10px;
-            background-color: #000;
-            transform: translateX(-50%) translateY(20px);
-            visibility: hidden;
-            opacity: 0;
-            z-index: $zmenu;
-            transition: ease all .3s;
-            &:hover{
-              >.link{
-                opacity: .5;
-              }
-            }
-            &:before{
-              content: "";
-              position: absolute;
-              bottom: 100%;
-              width: 100%;
-              height: 10px;
-              display: block;
-            }
-            >.link{
-              display: flex;
-              text-align: center;
-              transition: ease all .3s;
-              &:hover{
-                opacity: 1;
-                background-color: rgba($blanco,.05);
-              }
-            }
-            .link{
-              a{
-                flex-grow: 1;
-                padding: 10px;
-                &:after{
-                  display: none;
-                }
-              }
-              .subMenu{
-                top: 0;
-                left: 100%;
-                margin-top: 0;
-                transform: none;
-                &:before{
-                  display: none;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-
-
+//Generales
 .#{$pfx}producto{
   width: 25%;
   min-width: 25%;
@@ -545,16 +235,358 @@ body{
     }
   }
 }
-.#{$pfx}nuevos, .#{$pfx}ofertas{
+.#{$pfx}encabezado{
+  margin-bottom: 30px;
+  color: $negro;
+  font-size: 50px;
+  font-weight: 900;
+  text-align: center;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+.#{$pfx}underDecorado{
+  color: $primario;
+  font-weight: 900;
+  text-decoration: underline wavy;
+  &-2{
+    @extend .#{$pfx}underDecorado;
+    color: $secundario;
+  }
+}
+
+//Secciones
+.#{$pfx}slider{
+  background-color: #000;
+  .#{$pfx}container{
+    @include container(100%);
+    @include flex(column, nowrap, center, flex-end, center);
+    height: 500px;
+    position: relative;
+    &:hover{
+      .manualControls{
+        .control{
+          opacity: 1;
+          transform: translateY(-50%) !important;
+        }
+      }
+    }
+    .wrapperSlider{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      .imgSlider{
+        @include imagen;
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        transition: ease all .5s;
+        &.activo{
+          left: 100%;
+          transform: translateX(-100%);
+          transition-property: transform;
+        }
+      }
+    }
+    .manualControls{
+      .control{
+        @include flex(column, nowrap, center, center, center);
+        position: absolute;
+        top: 50%;
+        width: 50px;
+        height: 80px;
+        opacity: 0;
+        background-color: $blanco;
+        transform: translateY(-50%);
+        box-shadow: 0 0 10px 0 rgba($negro,.2);
+        transition: ease all .3s;
+        cursor: pointer;
+        &.at{
+          left: 5%;
+          transform: translateY(-50%) translateX(-100%);
+          &:before, &:after{
+            transform-origin: left;
+          }
+        }
+        &.av{
+          right: 5%;
+          transform: translateY(-50%) translateX(100%);
+          &:before, &:after{
+            transform-origin: right;
+          }
+        }
+        &.circular{
+          height: 50px;
+          border-radius: 50%;
+          &::before, &:after{
+            width: 10px;
+            height: 2px;
+          }
+        }
+        &:before, &:after{
+          content: "";
+          position: absolute;
+          width: 20px;
+          height: 1px;
+          background-color: $negro;
+          transform: rotate(-50deg);
+        }
+        &:after{
+          transform: rotate(50deg);
+        }
+      }
+    }
+    .dimerDots{
+      @include flex(row, wrap, center, center, center);
+      position: relative;
+      .dimerDot{
+        @include flex(column, nowrap, center, center, center);
+        width: 17px;
+        height: 17px;
+        margin: 10px 3px;
+        color: $blanco;
+        &.activo{
+          &:before{
+            width: 15px;
+            height: 15px;
+            background-color: currentColor;
+          }
+        }
+        &:before{
+          content: "";
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background-color: #ebebeb;
+          border: 1px solid rgba($negro,.2);
+          transition: ease all .2s;
+        }
+      }
+    }
+    @include mobile{
+      .manualControls{
+        display: none;
+      }
+    }
+  }
+}
+.#{$pfx}menu{
+  &.fixed{
+    .fixedWrapper{
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      z-index: $zmenu;
+      .#{$pfx}container{
+        .topBar{
+          .logo{
+            height: 50px;
+          }
+        }
+      }
+    }
+  }
+  .fixedWrapper{
+    background-color: $negro;
+    .#{$pfx}container{
+      @include container;
+      padding: 20px 0;
+      .topBar{
+        @include flex($jc: space-between);
+        width: 100%;
+        padding-bottom: 10px;
+        .logo{
+          @include imagen('', contain, left);
+          width: 300px;
+          height: 100px;
+          margin-right: 20px;
+          transition: ease all .3s;
+        }
+        .icons{
+          @include flex;
+          .#{$pfx}dropdown{
+            margin-right: 20px;
+            color: $blanco;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+            cursor: pointer;
+            &.activo{
+              .dropHeader{
+                &:after{
+                  transform: rotate(180deg);
+                }
+              }
+            }
+            .dropHeader{
+              @include flex;
+              padding-right: 20px;
+              position: relative;
+              &:after{
+                content: "";
+                position: absolute;
+                right: 0;
+                border-top: 8px solid $blanco;
+                border-left: 6px solid transparent;
+                border-right: 6px solid transparent;
+                transition: ease all .3s;
+              }
+              .currentValue{
+                margin-left: 5px;
+              }
+            }
+            .dropOptions{
+              display: none;
+              position: absolute;
+              top: 100%;
+              width: 100%;
+              margin-top: 10px;
+              text-align: center;
+              background-color: #000;
+              z-index: $zdrop;
+              &:hover{
+                .option{
+                  opacity: .5;
+                }
+              }
+              .option{
+                padding: 10px 20px;
+                transition: ease all .3s;
+                &:hover{
+                  opacity: 1;
+                  background-color: rgba($blanco,.05);
+                }
+              }
+            }
+          }
+          .icono{
+            width: 35px;
+            height: 35px;
+            margin-left: 20px;
+            cursor: pointer;
+            svg{
+              overflow: hidden;
+              path, circle{
+                fill: none;
+                stroke: $blanco;
+                stroke-miterlimit: 10;
+                stroke-width: 2;
+              }
+            }
+          }
+        }
+      }
+      .bottomBar{
+        padding-top: 10px;
+        border-top: 1px dashed $secundario;
+        .menuLinks{
+          @include flex;
+          >.link{
+            margin: 5px 10px;
+          }
+          .link{
+            position: relative;
+            min-width: max-content;
+            &:hover{
+              >a{
+                &:after{
+                  width: 100%;
+                }
+              }
+              >.subMenu{
+                opacity: 1;
+                visibility: visible;
+                transform: translateX(-50%);
+              }
+            }
+            a{
+              color: $blanco;
+              font-size: 14px;
+              letter-spacing: 1px;
+              text-transform: uppercase;
+              position: relative;
+              &:after{
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                margin: 0 auto;
+                width: 0;
+                height: 2px;
+                background-color: $primario;
+                transition: ease all .3s;
+              }
+            }
+            .subMenu{
+              position: absolute;
+              left: 50%;
+              top: 100%;
+              min-width: 100%;
+              margin-top: 10px;
+              background-color: #000;
+              transform: translateX(-50%) translateY(20px);
+              visibility: hidden;
+              opacity: 0;
+              z-index: $zmenu;
+              transition: ease all .3s;
+              &:hover{
+                >.link{
+                  opacity: .5;
+                }
+              }
+              &:before{
+                content: "";
+                position: absolute;
+                bottom: 100%;
+                width: 100%;
+                height: 10px;
+                display: block;
+              }
+              >.link{
+                display: flex;
+                text-align: center;
+                transition: ease all .3s;
+                &:hover{
+                  opacity: 1;
+                  background-color: rgba($blanco,.05);
+                }
+              }
+              .link{
+                a{
+                  flex-grow: 1;
+                  padding: 10px;
+                  &:after{
+                    display: none;
+                  }
+                }
+                .subMenu{
+                  top: 0;
+                  left: 100%;
+                  margin-top: 0;
+                  transform: none;
+                  &:before{
+                    display: none;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.#{$pfx}nuevos, .#{$pfx}ofertas, .#{$pfx}marcasDestacadas{
   .#{$pfx}container{
     @include container;
-    padding: 50px 0 !important;
-    .encabezado{
-      color: $negro;
-      font-size: 45px;
-      text-align: center;
-      margin-bottom: 30px;
-    }
+    padding: 100px 0 !important;
     .wrapperSlider{
       position: relative;
       &:hover{
@@ -565,11 +597,11 @@ body{
           }
         }
       }
-      .contenedorProds{
+      .contenedorSlider{
         width: 100%;
         position: relative;
         overflow: hidden;
-        .sliderProds{
+        .sliderCards{
           @include flex(row, nowrap, stretch, flex-start);
           max-width: 100%;
           transition: ease all .3s;
@@ -586,20 +618,19 @@ body{
           background-color: $blanco;
           opacity: 0;
           visibility: hidden;
-          transform: translateY(-50%);
           box-shadow: 0 0 10px 0 rgba($negro,.2);
           cursor: pointer;
           transition: ease all .3s;
           &.at{
             left: 0;
-            transform: translateX(-50%);
+            transform: translateY(-50%) translateX(-50%);
             &:before, &:after{
               transform-origin: left;
             }
           }
           &.av{
             right: 0;
-            transform: translateX(50%);
+            transform: translateY(-50%) translateX(50%);
             &:before, &:after{
               transform-origin: right;
             }
@@ -620,63 +651,68 @@ body{
     }
   }
 }
-
-
-
-.#{$pfx}infoX{
+.#{$pfx}marcasDestacadas{
+  background-color: $gris;
+  .#{$pfx}container{
+    .wrapperImg{
+      width: 20%;
+      min-width: 20%;
+      .imgMarca{
+        @include imagen($size: contain);
+        height: 120px;
+        margin: 10px;
+        display: block;
+      }
+    }
+  }
+}
+.#{$pfx}info{
   .#{$pfx}container{
     @include container;
-    padding: 50px 0 !important;
-    .innerInfo{
-      @include flex(row, wrap, stretch, center, center);
+    padding: 100px 0 !important;
+    position: relative;
+    .dimerSaurio{
+      @include imagen($size: contain);
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 400px;
+      height: 300px;
+      opacity: .1;
+    }
+    p:not(.tioDimer_encabezado){
       width: 100%;
-      .info{
-        width: calc(100% / 3);
-        padding: 20px !important;
-        text-align: center;
-        flex-grow: 1;
-        box-sizing: border-box;
-        &:not(:first-child){
-          border-left: 1px solid rgba($negro,.1);
-        }
-        .img{
-          @include imagen('');
-          width: 55px;
-          height: 55px;
-          margin: 0 auto !important;
-        }
-        .tit{
-          font-size: 20px;
-          text-align: center;
-          margin: 10px auto !important;
-        }
-        .sub{
-          text-align: center;
-          font-size: 13px;
-        }
-        .link{
-          display: inline-block;
-          font-size: 14px;
-          color: red;
-          text-align: center;
-          margin-top: 10px !important;
-          position: relative;
-          &:hover{
-            &:after{
-              width: 100%;
-            }
+      max-width: 1000px;
+      margin: 0 auto 10px auto;
+      font-size: 20px;
+      text-align: center;
+      position: relative;
+    }
+    .social{
+      @include flex;
+      margin: 20px auto;
+      .icono{
+        width: 50px;
+        height: 50px;
+        margin: 10px 20px;
+        cursor: pointer;
+        color: $primario;
+        transition: ease all .3s;
+        &:hover{
+          color: $secundario;
+          transform: translateY(-5px);
+          svg{
+            transform: rotateY(360deg);
           }
-          &:after{
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            width: 0;
-            height: 1px;
-            margin: auto;
-            background-color: red;
-            transition: ease all .2s;
+        }
+        svg{
+          transition: ease all .3s;
+          path, polygon, rect {
+            fill: currentColor;
+          }
+          circle {
+            stroke: currentColor;
+            stroke-width: 1;
           }
         }
       }
