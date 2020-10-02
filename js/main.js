@@ -59,6 +59,8 @@ $(function(){
         var grupos = totalSlides / slidesXgrupo;
         grupos = Math.ceil(grupos);
         if (grupos > 1) {
+            var intervalo;
+            var {duracion, automatico} = $(sliderX).data();
             $(sliderX).find('.wrapperSlider').append('<div class="controlesX"><div class="controlX at"></div><div class="controlX av"></div></div>');
             $(window).resize(function() {
                 groupShow = 1;
@@ -68,6 +70,16 @@ $(function(){
                 grupos = Math.ceil(totalSlides / slidesXgrupo);
                 wrapper.css('transform', 'translateX(0px)');
             });
+            if (automatico) {
+                console.log(i);
+                setTimeout(function(){
+                    intervalo = setInterval(function(){
+                        if (groupShow == grupos) groupShow = 0;
+                        wrapper.css('transform', `translateX(-${widthSlider * groupShow}px)`);
+                        groupShow++;
+                    }, duracion || 5000);
+                }, 500 * i)
+            }
             $(sliderX).on('click', '.controlesX .controlX', function(){
                 if ($(this).hasClass('av')) {
                     if (groupShow == grupos) groupShow = 0;
@@ -77,6 +89,14 @@ $(function(){
                     groupShow = groupShow - 1;
                     if (groupShow == 0) groupShow = grupos;
                     wrapper.css('transform', `translateX(-${widthSlider * (groupShow - 1)}px)`);
+                }
+                if (automatico) {
+                    clearInterval(intervalo);
+                    intervalo = setInterval(function(){
+                        if (groupShow == grupos) groupShow = 0;
+                        wrapper.css('transform', `translateX(-${widthSlider * groupShow}px)`);
+                        groupShow++;
+                    }, duracion || 5000);
                 }
             })
         }

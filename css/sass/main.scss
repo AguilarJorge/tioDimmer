@@ -557,53 +557,64 @@ body{
     }
     .wrapperSlider{
       position: relative;
-    }
-    .contenedorProds{
-      width: 100%;
-      position: relative;
-      overflow: hidden;
-      .sliderProds{
-        @include flex(row, nowrap, stretch, flex-start);
-        max-width: 100%;
-        transition: ease all .3s;
+      &:hover{
+        .controlesX{
+          .controlX{
+            opacity: 1;
+            visibility: visible;
+          }
+        }
       }
-    }
-    .controlesX{
-      .controlX{
-        @include flex(column, nowrap, center, center, center);
-        position: absolute;
-        top: 50%;
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        background-color: $blanco;
-        transform: translateY(-50%);
-        box-shadow: 0 0 10px 0 rgba($negro,.2);
-        cursor: pointer;
-        &.at{
-          left: 0;
-          transform: translateX(-50%);
-          &:before, &:after{
-            transform-origin: left;
-          }
+      .contenedorProds{
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+        .sliderProds{
+          @include flex(row, nowrap, stretch, flex-start);
+          max-width: 100%;
+          transition: ease all .3s;
         }
-        &.av{
-          right: 0;
-          transform: translateX(50%);
-          &:before, &:after{
-            transform-origin: right;
-          }
-        }
-        &:before, &:after{
-          content: "";
+      }
+      .controlesX{
+        .controlX{
+          @include flex(column, nowrap, center, center, center);
           position: absolute;
-          width: 12px;
-          height: 1px;
-          background-color: $secundario;
-          transform: rotate(-50deg);
-        }
-        &:after{
-          transform: rotate(50deg);
+          top: 50%;
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          background-color: $blanco;
+          opacity: 0;
+          visibility: hidden;
+          transform: translateY(-50%);
+          box-shadow: 0 0 10px 0 rgba($negro,.2);
+          cursor: pointer;
+          transition: ease all .3s;
+          &.at{
+            left: 0;
+            transform: translateX(-50%);
+            &:before, &:after{
+              transform-origin: left;
+            }
+          }
+          &.av{
+            right: 0;
+            transform: translateX(50%);
+            &:before, &:after{
+              transform-origin: right;
+            }
+          }
+          &:before, &:after{
+            content: "";
+            position: absolute;
+            width: 12px;
+            height: 1px;
+            background-color: $secundario;
+            transform: rotate(-50deg);
+          }
+          &:after{
+            transform: rotate(50deg);
+          }
         }
       }
     }
@@ -611,16 +622,7 @@ body{
 }
 
 
-.#{$pfx}bannerPublicidad{
-  background-color: #ebebeb;
-  padding: 20px 0 !important;
-  .#{$pfx}container{
-    @include imagen('', cover);
-    @include container;
-    height: 400px;
-    background-color: $blanco;
-  }
-}
+
 .#{$pfx}infoX{
   .#{$pfx}container{
     @include container;
