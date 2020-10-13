@@ -34,6 +34,19 @@
     text-overflow: ellipsis;
     display: -webkit-box;
 }
+@mixin scrollbars($size: 5px, $dotBar: rgba(#000,.2), $fullBar: transparent) {
+    &::-webkit-scrollbar {
+        width:  $size;
+        height: $size;
+        background: $fullBar;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: $dotBar;
+    }
+    &::-webkit-scrollbar-track {
+        background: $fullBar;
+    }
+}
 
 // Media Queries
 @mixin desktop {

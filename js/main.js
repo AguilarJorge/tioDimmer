@@ -77,9 +77,9 @@ $(function(){
             if (automatico) {
                 setTimeout(function(){
                     intervalo = setInterval(function(){
-                        if (groupShow == grupos) groupShow = 0;
-                        wrapper.css('transform', `translateX(-${widthSlider * groupShow}px)`);
-                        groupShow++;
+                    if (groupShow == grupos) groupShow = 0;
+                    wrapper.css('transform', `translateX(-${widthSlider * groupShow}px)`);
+                    groupShow++;
                     }, duracion || 5000);
                 }, 500 * i)
             }
@@ -104,7 +104,7 @@ $(function(){
             })
         }
     })
-    
+
     $('.tioDimer_dropdown').click(function(){
         $(this).children('.dropOptions').slideToggle('fast');
         $(this).toggleClass('activo');
@@ -114,7 +114,35 @@ $(function(){
         $(this).parents('.tioDimer_dropdown').find('.currentValue').text(value);
     })
 
+    $('.field.anim .value').focusin(function(){
+        $(this).parent().removeClass('error');
+        if (!$(this).val().trim().length) {
+            $(this).val('');
+            $(this).parent().addClass('active');
+        }
+    })
+    $('.field.anim .value').focusout(function () {
+        if (!$(this).val().trim().length) $(this).parent().removeClass('active');
+    })
+    $('.form .submit').click(function(){
+        let requeridos = $(this).parents('.form').find('.field.required');
+        let validos = requeridos.map((i, field) => {
+            let valor = $(field).find('.value').val().trim();
+            if (valor.length) {
+                return 'valido';
+            } else {
+                $(field).addClass('error');
+                return 'invalido';
+            }
+        })
+        if ($.inArray('invalido', validos) > -1) return false;
+        console.log('envia form');
+    })
 
+    $('.tioDimer_producto .detalleRapido').click(function(){
+        let id = $(this).data('id');
+        let info = productos.filter(prod => prod.id == id);
+    })
 
     function fixedMenu(){
         let topMenu = $('.tioDimer_menu').offset().top;
