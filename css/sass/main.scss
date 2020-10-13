@@ -295,6 +295,106 @@ body{
     color: $secundario;
   }
 }
+.#{$pfx}toCartCantidad{
+  @include flex;
+  border-radius: 100px;
+  border: 1px solid $gris;
+  .toCartBoton{
+    @include flex;
+    width: 40px;
+    height: 40px;
+    color: $negro;
+    border-radius: 50%;
+    background-color: $gris;
+    position: relative;
+    cursor: pointer;
+    &.menos{
+      &:after{
+        display: none;
+      }
+    }
+    &:before, &:after{
+      content: "";
+      position: absolute;
+      width: calc(100% - 30px);
+      height: 2px;
+      background-color: currentColor;
+    }
+    &:after{
+      transform: rotate(90deg);
+    }
+  }
+  .toCartCantidad{
+    min-width: 50px;
+    font-size: 20px;
+    font-weight: 900;
+  }
+}
+.#{$pfx}botonTextoIcono{
+  @include flex;
+  color: $blanco;
+  font-size: 12px;
+  text-align: center;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: 50px;
+  background-color: $secundario;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  &:hover{
+    .labelBoton{
+      transform: translateY(-100%);
+    }
+    .icono{
+      bottom: 50%;
+      transform: translateY(50%);
+    }
+  }
+  .labelBoton{
+    margin-bottom: 0;
+    padding: 10px 20px;
+    transition: ease all .2s;
+  }
+  .icono{
+    position: absolute;
+    bottom: 0;
+    color: $blanco;
+    width: 25px;
+    height: 25px;
+    transform: translateY(100%);
+    transition: ease all .2s;
+    svg{
+      path, circle{
+        fill: none;
+        stroke-width: 4;
+        stroke: currentColor;
+        stroke-miterlimit: 10;
+      }
+    }
+  }
+}
+.#{$pfx}botonIcono{
+  border-radius: 50px;
+  color: $secundario;
+  border: 1px solid $secundario;
+  cursor: pointer;
+  transition: ease all .3s;
+  .icono{
+    width: 20px;
+    height: 20px;
+    padding: 10px;
+    svg{
+      path, circle{
+        fill: transparent;
+        stroke-width: 2;
+        stroke: currentColor;
+        stroke-miterlimit: 10;
+        transition: ease all .3s;
+      }
+    }
+  }
+}
 .#{$pfx}infoRapidaModal{
   @include flex;
   position: fixed;
@@ -329,6 +429,34 @@ body{
         padding: 20px;
         text-align: center;
         box-sizing: border-box;
+        .actions{
+          @include flex;
+          margin: 30px auto;
+          .#{$pfx}botonTextoIcono{
+            margin: 0 10px 0 20px;
+          }
+          .#{$pfx}botonIcono{
+            &.esFav{
+              color: red;
+              border-color: currentColor;
+              background-color: currentColor;
+              &:hover{
+                path, circle{
+                  fill: $blanco;
+                }
+              }
+              path, circle{
+                fill: $blanco;
+              }
+            }
+            &:hover{
+              path, circle{
+                fill: red;
+                stroke: red;
+              }
+            }
+          }
+        }
         p{
           margin-bottom: 10px;
           font-size: 14px;
@@ -339,6 +467,28 @@ body{
         .nombre{
           font-size: 25px;
           font-weight: 900;
+        }
+        .precios{
+          @include flex;
+          margin: 10px auto;
+        }
+        .precio{
+          @include flex($wrap: nowrap);
+          font-size: 30px;
+          font-weight: 900;
+          color: $secundario;
+          margin-bottom: 0;
+          &:before{
+            font-size: 20px;
+            content: var(--currencyPrefix);
+          }
+        }
+        .precioOferta{
+          @extend .precio;
+          color: red;
+          font-size: 20px;
+          margin-left: 10px;
+          text-decoration: line-through;
         }
         .stock{
           @include flex($wrap: nowrap);
