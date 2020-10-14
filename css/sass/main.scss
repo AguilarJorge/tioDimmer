@@ -330,6 +330,23 @@ body{
     font-weight: 900;
   }
 }
+.#{$pfx}boton{
+  display: block;
+  padding: 10px 20px;
+  color: $blanco;
+  font-size: 12px;
+  text-align: center;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: 50px;
+  background-color: $secundario;
+  transition: ease all .3s;
+  cursor: pointer;
+  &:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 10px 10px 0 rgba($negro,.1);
+  }
+}
 .#{$pfx}botonTextoIcono{
   @include flex;
   color: $blanco;
@@ -397,6 +414,7 @@ body{
 }
 .#{$pfx}infoRapidaModal{
   @include flex;
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -404,17 +422,26 @@ body{
   height: 100%;
   background-color: rgba($negro,.8);
   z-index: $zmodal;
+  .closeModal{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+  }
   .modalContainer{
     @include container;
     max-width: 1000px;
     background-color: $blanco;
+    position: relative;
     .topContent{
-      @include flex;
+      @include flex($ai: stretch);
       width: 100%;
       .imagenContainer{
         @include flex;
         width: 50%;
-        height: 500px;
+        min-height: 500px;
         padding: 50px;
         background-color: $gris;
         box-sizing: border-box;
@@ -425,90 +452,97 @@ body{
         }
       }
       .texto{
+        @include flex;
         width: 50%;
-        padding: 20px;
-        text-align: center;
-        box-sizing: border-box;
-        .actions{
-          @include flex;
-          margin: 30px auto;
-          .#{$pfx}botonTextoIcono{
-            margin: 0 10px 0 20px;
-          }
-          .#{$pfx}botonIcono{
-            &.esFav{
-              color: red;
-              border-color: currentColor;
-              background-color: currentColor;
-              &:hover{
+        .wrapper{
+          @include flex(column, nowrap, center, flex-start);
+          @include scrollbars;
+          padding: 20px;
+          text-align: center;
+          max-height: 90vh;
+          overflow: auto;
+          box-sizing: border-box;
+          .actions{
+            @include flex;
+            margin: 30px auto;
+            .#{$pfx}botonTextoIcono{
+              margin: 0 10px 0 20px;
+            }
+            .#{$pfx}botonIcono{
+              &.esFav{
+                color: red;
+                border-color: currentColor;
+                background-color: currentColor;
+                &:hover{
+                  path, circle{
+                    fill: $blanco;
+                  }
+                }
                 path, circle{
                   fill: $blanco;
                 }
               }
-              path, circle{
-                fill: $blanco;
-              }
-            }
-            &:hover{
-              path, circle{
-                fill: red;
-                stroke: red;
+              &:hover{
+                path, circle{
+                  fill: red;
+                  stroke: red;
+                }
               }
             }
           }
-        }
-        p{
-          margin-bottom: 10px;
-          font-size: 14px;
-        }
-        .bold{
-          font-weight: 600;
-        }
-        .nombre{
-          font-size: 25px;
-          font-weight: 900;
-        }
-        .precios{
-          @include flex;
-          margin: 10px auto;
-        }
-        .precio{
-          @include flex($wrap: nowrap);
-          font-size: 30px;
-          font-weight: 900;
-          color: $secundario;
-          margin-bottom: 0;
-          &:before{
-            font-size: 20px;
-            content: var(--currencyPrefix);
+          p{
+            font-size: 14px;
           }
-        }
-        .precioOferta{
-          @extend .precio;
-          color: red;
-          font-size: 20px;
-          margin-left: 10px;
-          text-decoration: line-through;
-        }
-        .stock{
-          @include flex($wrap: nowrap);
-          &.out{
+          .bold{
+            font-weight: 600;
+          }
+          .nombre{
+            font-size: 25px;
+            font-weight: 900;
+          }
+          .precios{
+            @include flex;
+            margin: 10px auto;
+          }
+          .precio{
+            @include flex($wrap: nowrap);
+            font-size: 30px;
+            font-weight: 900;
+            color: $secundario;
+            margin-bottom: 0;
             &:before{
-              background-color: red;
+              font-size: 20px;
+              content: var(--currencyPrefix);
             }
           }
-          &:before{
-            content: "";
-            width: 10px;
-            height: 10px;
-            min-width: 10px;
-            margin-right: 5px;
-            border-radius: 50%;
-            background-color: green;
+          .precioOferta{
+            @extend .precio;
+            color: red;
+            font-size: 20px;
+            margin-left: 10px;
+            text-decoration: line-through;
           }
-        }
-        .descripcion{
-          margin-top: 20px;
+          .stock{
+            @include flex($wrap: nowrap);
+            margin-bottom: 5px;
+            &.out{
+              &:before{
+                background-color: red;
+              }
+            }
+            &:before{
+              content: "";
+              width: 10px;
+              height: 10px;
+              min-width: 10px;
+              margin-right: 5px;
+              border-radius: 50%;
+              background-color: green;
+            }
+          }
+          .#{$pfx}boton{
+            margin-top: 30px;
+          }
         }
       }
     }

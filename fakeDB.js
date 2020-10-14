@@ -7,7 +7,8 @@ const productos = [
     descripcionLarga: 'Alimentado por la arquitectura GeForce GTX 1650 NVIDIA Turing y GeForce Experience Integrado con 4 GB GDDR6 128 bit interfaz de memoria WINDFORCE 2X Sistema de enfriamiento con ventiladores giratorios alternativos de 80 mm ventiladores de hoja únicos Core Clock: 1710 MHz',
     precio: 4399,
     precioOferta: 5000,
-    existencia: true
+    existencia: true,
+    codigoProducto: 'H410M-APRO'
   },
   {
     id: 2,
@@ -16,7 +17,8 @@ const productos = [
     descripcionCorta: 'Graphics Processing GeForce® GTX 1650 Core Clock',
     descripcionLarga: '',
     precio: 1280,
-    existencia: true
+    existencia: true,
+    codigoProducto: 'AS13C-RAWQ'
   },
   {
     id: 3,
@@ -25,7 +27,8 @@ const productos = [
     descripcionCorta: 'Graphics Processing GeForce® GTX 1650 Core Clock',
     descripcionLarga: '',
     precio: 1348,
-    existencia: false
+    existencia: false,
+    codigoProducto: '43REQ-TYI1'
   },
   {
     id: 4,
@@ -34,7 +37,8 @@ const productos = [
     descripcionCorta: 'Graphics Processing GeForce® GTX 1650 Core Clock',
     descripcionLarga: '',
     precio: 2699,
-    existencia: false
+    existencia: false,
+    codigoProducto: 'TYUT7-FNTG'
   },
   {
     id: 5,
@@ -44,6 +48,7 @@ const productos = [
     descripcionLarga: '',
     precio: 4799,
     precioOferta: 8750,
-    existencia: true
+    existencia: true,
+    codigoProducto: 'HR456-45HT'
   }
 ]
