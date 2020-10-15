@@ -142,16 +142,23 @@ $(function(){
     let info = productos.find(prod => prod.id == id);
     detallesRapidos(info);
   })
-  $(document).on('click', '.tioDimer_toCartCantidad .toCartBoton', function () {
+  $(document).on('click', '.tioDimer_toCartCantidad .toCartBoton', function(){
     const boton = $(this);
     toCartCantidad(boton, boton.hasClass('mas') ? 'suma' : boton.hasClass('menos') ? 'resta' : null);
   });
   $(document).on('click', '.tioDimer_aFavs', function(){
     $(this).toggleClass('esFav');
   })
-  $(document).on('click', '.tioDimer_infoRapidaModal .zoomWatch', function () {
+  $(document).on('click', '.tioDimer_infoRapidaModal .zoomWatch', function(){
     var areaImagen = $(this).parent();
     zoomImg(areaImagen);
+  })
+  $(document).keydown(function(e){
+    if ($('.tioDimer_infoRapidaModal').length && e.keyCode === 27) {
+      $('.tioDimer_infoRapidaModal').fadeOut(function(){
+        $(this).remove();
+      })
+    }
   })
 
   function fixedMenu(){

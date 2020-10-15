@@ -541,6 +541,7 @@ body{
             background-color: $blanco;
             border: 1px solid rgba($negro,.2);
             box-sizing: border-box;
+            cursor: move;
           }
         }
         .zoomImg{
@@ -670,7 +671,9 @@ body{
       .manualControls{
         .control{
           opacity: 1;
-          transform: translateY(-50%) !important;
+          &.at, &.av{
+            transform: translateY(-50%);
+          }
         }
       }
     }
@@ -788,6 +791,7 @@ body{
       .#{$pfx}container{
         .topBar{
           .logo{
+            width: 200px;
             height: 50px;
           }
         }
@@ -874,6 +878,9 @@ body{
             height: 35px;
             margin-left: 20px;
             cursor: pointer;
+            &.launcherMenu{
+              display: none;
+            }
             svg{
               overflow: hidden;
               path, circle{
@@ -989,11 +996,52 @@ body{
       }
     }
   }
+  @include responsivo(800px){
+    .fixedWrapper{
+      .#{$pfx}container{
+        .topBar{
+          padding: 0;
+          .icons{
+            .#{$pfx}dropdown{
+              display: none;
+            }
+            .icono{
+              width: 25px;
+              height: 25px;
+              margin-left: 15px;
+              &.launcherMenu{
+                display: block;
+              }
+            }
+          }
+        }
+        .bottomBar{
+          display: none;
+        }
+      }
+    }
+  }
+  @include mobile{
+    .fixedWrapper{
+      .#{$pfx}container{
+        .topBar{
+          .logo{
+            width: 200px;
+            margin: 0 auto;
+            background-position: center;
+          }
+          .icons{
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
 }
 .#{$pfx}nuevos, .#{$pfx}ofertas, .#{$pfx}marcasDestacadas{
   .#{$pfx}container{
     @include container;
-    padding: 100px 0 !important;
+    padding: 100px 0;
     .wrapperSlider{
       position: relative;
       &:hover{
@@ -1056,6 +1104,82 @@ body{
         }
       }
     }
+    @include responsivo(1200px){
+      .wrapperSlider{
+        .contenedorSlider{
+          .sliderCards{
+            .#{$pfx}producto{
+              width: calc(100% / 3);
+              min-width: calc(100% / 3);
+            }
+          }
+        }
+      }
+    }
+    @include responsivo(900px){
+      .wrapperSlider{
+        .contenedorSlider{
+          .sliderCards{
+            .#{$pfx}producto{
+              width: 50%;
+              min-width: 50%;
+            }
+          }
+        }
+      }
+    }
+    @include tablet{
+      padding: 50px 0;
+    }
+    @include responsivo(580px){
+      .wrapperSlider{
+        .contenedorSlider{
+          .sliderCards{
+            .#{$pfx}producto{
+              width: 100%;
+              min-width: 100%;
+              .innerProd{
+                .imgWrapper{
+                  height: 150px;
+                }
+                .info{
+                  height: 150px;
+                  padding: 10px;
+                }
+                .actions{
+                  padding: 10px;
+                  .boton{
+                    margin-bottom: 10px;
+                  }
+                }
+              }
+            }
+          }
+        }
+        .controlesX{
+          @include flex;
+          .controlX{
+            position: relative;
+            top: 0;
+            width: 50px;
+            height: 50px;
+            margin: 10px 15px;
+            opacity: 1;
+            visibility: visible;
+            &.at, &.av{
+              transform: none;
+            }
+          }
+        }
+      }
+    }
+    @include mobile{
+      padding: 30px 0;
+      .#{$pfx}encabezado{
+        font-size: 40px;
+        letter-spacing: 2px;
+      }
+    }
   }
 }
 .#{$pfx}marcasDestacadas{
@@ -1071,12 +1195,54 @@ body{
         display: block;
       }
     }
+    @include desktop{
+      padding: 20px 0;
+      .wrapperImg{
+        width: 25%;
+        min-width: 25%;
+        .imgMarca{
+          height: 100px;
+        }
+      }
+    }
+    @include tablet{
+      .wrapperImg{
+        width: calc(100% / 3);
+        min-width: calc(100% / 3);
+        .imgMarca{
+          height: 100px;
+        }
+      }
+    }
+    @include responsivo(600px){
+      .wrapperSlider{
+        .controlesX{
+          display: none;
+        }
+      }
+      .wrapperImg{
+        width: 50%;
+        min-width: 50%;
+        .imgMarca{
+          height: 100px;
+        }
+      }
+    }
+    @include mobile{
+      .wrapperImg{
+        width: 100%;
+        min-width: 100%;
+        .imgMarca{
+          height: 100px;
+        }
+      }
+    }
   }
 }
 .#{$pfx}info{
   .#{$pfx}container{
     @include container;
-    padding: 100px 0 !important;
+    padding: 100px 0;
     position: relative;
     .dimerSaurio{
       @include imagen('', contain, center bottom);
@@ -1085,7 +1251,9 @@ body{
       right: 0;
       width: 400px;
       height: 300px;
+      max-width: 100%;
       opacity: .1;
+      pointer-events: none;
     }
     p:not(.tioDimer_encabezado){
       width: 100%;
@@ -1098,6 +1266,7 @@ body{
     .social{
       @include flex;
       margin: 20px auto;
+      position: relative;
       .icono{
         width: 50px;
         height: 50px;
@@ -1124,6 +1293,22 @@ body{
         }
       }
     }
+    @include mobile{
+      .#{$pfx}encabezado{
+        font-size: 40px;
+        letter-spacing: 2px;
+      }
+      p:not(.tioDimer_encabezado){
+        font-size: 16px;
+      }
+      .social{
+        .icono{
+          width: 40px;
+          height: 40px;
+          margin: 5px;
+        }
+      }
+    }
   }
 }
 .#{$pfx}contacto{
@@ -1144,6 +1329,7 @@ body{
       width: 50%;
       padding: 50px;
       color: $blanco;
+      text-align: center;
       background-color: $primario;
       box-sizing: border-box;
       .header{
@@ -1157,7 +1343,8 @@ body{
       }
     }
     .formulario{
-      width: 100%;
+      width: 90%;
+      margin: 50px auto 0 auto;
       margin-top: 50px;
       .form{
         @include flex;
@@ -1240,6 +1427,22 @@ body{
             transform: translateY(-5px);
             box-shadow: 0 10px 10px 0 rgba($negro,.1);
           }
+        }
+      }
+    }
+    @include tablet{
+      .mapa, .infoContacto{
+        width: 90%;
+      }
+      .mapa{
+        margin-bottom: 20px;
+      }
+    }
+    @include mobile{
+      .formulario{
+        .#{$pfx}encabezado{
+          font-size: 40px;
+          letter-spacing: 2px;
         }
       }
     }
