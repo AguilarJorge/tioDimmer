@@ -142,6 +142,17 @@ $(function(){
     let info = productos.find(prod => prod.id == id);
     detallesRapidos(info);
   })
+  $(document).on('click', '.tioDimer_toCartCantidad .toCartBoton', function () {
+    const boton = $(this);
+    toCartCantidad(boton, boton.hasClass('mas') ? 'suma' : boton.hasClass('menos') ? 'resta' : null);
+  });
+  $(document).on('click', '.tioDimer_aFavs', function(){
+    $(this).toggleClass('esFav');
+  })
+  $(document).on('click', '.tioDimer_infoRapidaModal .zoomWatch', function () {
+    var areaImagen = $(this).parent();
+    zoomImg(areaImagen);
+  })
 
   function fixedMenu(){
     let topMenu = $('.tioDimer_menu').offset().top;
@@ -180,8 +191,17 @@ $(function(){
           <div class="closeModal"></div>
           <div class="modalContainer">
             <div class="topContent">
-              <div class="imagenContainer">
-                <div class="imagen" style="background-image: url(${imagen});"></div>
+              <div class="imagenContainer zoom_section">
+                <div class="zoom_launcher zoomWatch">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                    <path d="M2.002 40h22v22h-22z"></path>
+                    <path d="M2 28V2h60v60H36"></path>
+                    <path d="M30 34l22-22m-16 0h16v16"></path>
+                  </svg>
+                </div>
+                <div class="zoom_imgOrigin wrapperImg">
+                  <div class="zoom_imgSource imagen" style="background-image: url(${imagen});"></div>
+                </div>
               </div>
               <div class="texto">
                 <div class="wrapper">
@@ -193,12 +213,12 @@ $(function(){
                   <p class="stock ${existencia ?'':'out'} bold">${existencia ? 'Disponible en tienda y listo para enviar' : 'Fuera de stock'}</p>
                   <p class="codigo"><span class="bold">Código Producto: </span>${codigoProducto}</p>
                   <div class="actions">
-                    <div class="tioDimer_toCartCantidad">
-                      <div class="toCartBoton menos"></div>
+                    <div class="tioDimer_toCartCantidad ${!existencia ? 'tioDimer_disabled':''}">
+                      <div class="toCartBoton menos tioDimer_disabled"></div>
                       <div class="toCartCantidad">1</div>
                       <div class="toCartBoton mas"></div>
                     </div>
-                    <div class="tioDimer_botonTextoIcono">
+                    <div class="tioDimer_botonTextoIcono ${!existencia ? 'tioDimer_disabled' : ''}">
                       <label class="labelBoton">Agregar al carrito</label>
                       <div class="icono">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
@@ -208,7 +228,7 @@ $(function(){
                         </svg>
                       </div>
                     </div>
-                    <div class="tioDimer_botonIcono">
+                    <div class="tioDimer_aFavs tioDimer_botonIcono">
                       <div class="icono">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
                           <path d="M47 5c-6.5 0-12.9 4.2-15 10-2.1-5.8-8.5-10-15-10A15 15 0 0 0 2 20c0 13 11 26 30 39 19-13 30-26 30-39A15 15 0 0 0 47 5z"></path>
@@ -231,5 +251,83 @@ $(function(){
         $(this).remove();
       })
     })
+  }
+  function toCartCantidad(boton, operacion){
+    const container = boton.parents('.tioDimer_toCartCantidad');
+    const numero = container.find('.toCartCantidad');
+    let tipoAnim = 'normal';
+    if (operacion == 'resta') {
+      if (parseInt(numero.text()) == 1) return false;
+      if (parseInt(numero.text() - 1) == 1) {
+        boton.addClass('tioDimer_disabled');
+      }
+      tipoAnim = 'reverse';
+      numero.text(parseInt(numero.text()) - 1);
+    } else if (operacion == 'suma') {
+      boton.siblings('.toCartBoton.tioDimer_disabled').removeClass('tioDimer_disabled');
+      numero.text(parseInt(numero.text()) + 1);
+    } else {
+      console.log('El tipo de operacion (suma / resta) es obligatorio');
+      return false;
+    }
+    numero.addClass(tipoAnim == 'reverse' ? 'animacion-reverse' : 'animacion');
+    numero.one('animationend', function () {
+      numero.removeClass(tipoAnim == 'reverse' ? 'animacion-reverse' : 'animacion');
+    });
+  }
+  function zoomImg(zoomArea, escala = 3){
+    if ($(window).width() > 480) {
+      zoomArea.find('.zoom_launcher').fadeOut('fast');
+      const imagen = zoomArea.find('.zoom_imgOrigin');
+      const urlImagen = zoomArea.find('.zoom_imgSource')[0].style.backgroundImage;
+      const dimensiones = {
+        imagen: {
+          width: imagen.outerWidth(), height: imagen.outerHeight()
+        },
+        lupa: {
+          width: imagen.outerWidth() / escala, height: imagen.outerHeight() / escala
+        }
+      };
+      const estiloInicial = {
+        backgroundImage: urlImagen,
+        backgroundSize: parseInt(imagen.css('padding')) ? `calc(100% - (${(parseInt(imagen.css('padding')) / 2) * escala}px))` : 'contain',
+        transform: `scale(${escala}) translateX(${dimensiones.imagen.width / escala}px) translateY(${dimensiones.imagen.height / escala}px)`
+      };
+      imagen.append(`<div class="zoom_lupa"></div>`);
+      zoomArea.append(`<div class="zoom_imgAlt zoomImg"><div class="zoom"></div></div>`);
+      const scaleArea = zoomArea.children('.zoom_imgAlt');
+      const zoom = scaleArea.children('.zoom');
+      const lupa = imagen.children('.zoom_lupa');
+      scaleArea.fadeIn();
+      zoom.css(estiloInicial);
+      lupa.css(dimensiones.lupa);
+      imagen.mousemove(function(e){
+        let movimientoLupa = {x: e.pageX, y: e.pageY};
+        let centroImagen = {
+          x: (imagen.offset().left + (dimensiones.imagen.width / 2)),
+          y: (imagen.offset().top + (dimensiones.imagen.height / 2))
+        }
+        let posicionLupa = {
+          x: centroImagen.x - movimientoLupa.x,
+          y: centroImagen.y - movimientoLupa.y
+        }
+        let transformLupa = {
+          x: (movimientoLupa.x - (dimensiones.lupa.width / 2)) - imagen.offset().left,
+          y: (movimientoLupa.y - (dimensiones.lupa.height / 2)) - imagen.offset().top
+        }
+        var transformZoom = (`scale(${escala}) translateX(${posicionLupa.x}px) translateY(${posicionLupa.y}px)`);
+        zoom.css('transform', transformZoom);
+        lupa.css('transform', `translateX(${transformLupa.x}px) translateY(${transformLupa.y}px)`);
+      });
+      imagen.mouseout(function(){
+        lupa.remove();
+        zoomArea.find('.zoom_launcher').fadeIn('fast');
+        scaleArea.fadeOut('fast', function(){
+          scaleArea.remove();
+        })
+      })
+    } else {
+      console.log('Solo disponible para pc');
+    }
   }
 })

@@ -38,8 +38,33 @@ body{
   background: linear-gradient(135deg, #dcdcdc 10%, #bfbebe 91%);
 }
 
+@keyframes anim_toCartCantidad {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-50%);
+    opacity: 0;
+  }
+  51% {
+    transform: translateY(50%);
+    opacity: 0;
+  }
+}
+@keyframes anim_favsHeart {
+  0% {transform: scale(1);}
+  50% {transform: scale(1.2);}
+}
 
 //Generales
+.#{$pfx}disabled{
+  opacity: .5;
+  cursor: not-allowed !important;
+  * {
+    pointer-events: none !important;
+  }
+}
 .#{$pfx}producto{
   width: 25%;
   min-width: 25%;
@@ -64,6 +89,9 @@ body{
       background-color: $gris;
       position: relative;
       &:hover{
+        .imgProd{
+          transform: scale(.8);
+        }
         .detalleRapido{
           width: 100%;
           height: 100%;
@@ -109,6 +137,7 @@ body{
         width: calc(100% - 20px);
         height: calc(100% - 20px);
         margin: 10px;
+        transition: ease all .3s;
       }
     }
     .info{
@@ -258,17 +287,35 @@ body{
           letter-spacing: 1px;
           text-transform: uppercase;
           cursor: pointer;
+          &:after{
+            content: "A favoritos";
+          }
+          &.esFav{
+            &:after{
+              content: "En favoritos";
+            }
+            .icono{
+              animation: anim_favsHeart .2s linear;
+              svg{
+                path{
+                  fill: red;
+                }
+              }
+            }
+          }
           .icono{
             width: 20px;
             height: 20px;
             margin-right: 5px;
+            color: red;
             svg{
               overflow: hidden;
               path{
-                fill: none;
-                stroke: red;
+                fill: transparent;
+                stroke: currentColor;
                 stroke-width: 2;
                 stroke-miterlimit: 10;
+                transition: ease all .3s;
               }
             }
           }
@@ -328,6 +375,13 @@ body{
     min-width: 50px;
     font-size: 20px;
     font-weight: 900;
+    user-select: none;
+    &.animacion{
+      animation: anim_toCartCantidad .2s;
+      &-reverse{
+        animation: anim_toCartCantidad reverse .2s;
+      }
+    }
   }
 }
 .#{$pfx}boton{
@@ -442,13 +496,68 @@ body{
         @include flex;
         width: 50%;
         min-height: 500px;
-        padding: 50px;
         background-color: $gris;
         box-sizing: border-box;
-        .imagen{
-          @include imagen($size: contain);
+        position: relative;
+        .zoomWatch{
+          position: absolute;
+          top: 20px;
+          left: 20px;
+          width: 20px;
+          height: 20px;
+          padding: 15px;
+          border-radius: 50%;
+          color: $negro;
+          background-color: $blanco;
+          box-shadow: 0 0 10px 0 rgba($negro,.1);
+          z-index: $zup;
+          cursor: pointer;
+          svg{
+            path{
+              fill: none;
+              stroke-width: 2;
+              stroke: currentColor;
+              stroke-miterlimit: 10;
+            }
+          }
+        }
+        .wrapperImg{
           width: 100%;
           height: 100%;
+          padding: 50px;
+          box-sizing: border-box;
+          position: relative;
+          overflow: hidden;
+          .imagen{
+            @include imagen($size: contain);
+            width: 100%;
+            height: 100%;
+          }
+          .zoom_lupa{
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: .5;
+            background-color: $blanco;
+            border: 1px solid rgba($negro,.2);
+            box-sizing: border-box;
+          }
+        }
+        .zoomImg{
+          display: none;
+          position: absolute;
+          top: 0;
+          left: 100%;
+          width: 100%;
+          height: 100%;
+          background-color: $blanco;
+          overflow: hidden;
+          z-index: $zup;
+          .zoom{
+            @include imagen($size: contain);
+            width: 100%;
+            height: 100%;
+          }
         }
       }
       .texto{
@@ -457,7 +566,7 @@ body{
         .wrapper{
           @include flex(column, nowrap, center, flex-start);
           @include scrollbars;
-          padding: 20px;
+          padding: 50px 20px;
           text-align: center;
           max-height: 90vh;
           overflow: auto;
