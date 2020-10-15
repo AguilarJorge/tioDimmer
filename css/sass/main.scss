@@ -657,6 +657,64 @@ body{
       }
     }
   }
+  @include tablet{
+    .modalContainer{
+      .topContent{
+        .imagenContainer, .texto{
+          width: 100%;
+        }
+        .imagenContainer{
+          min-height: 250px;
+          .zoomWatch{
+            display: none;
+          }
+          .wrapperImg{
+            padding: 10px;
+          }
+          .zoomImg{
+            top: 100%;
+            left: 0;
+          }
+        }
+        .texto{
+          .wrapper{
+            max-height: calc(90vh - 250px);
+            padding: 20px;
+          }
+        }
+      }
+    }
+  }
+  @include mobile{
+    .modalContainer{
+      .topContent{
+        .imagenContainer{
+          min-height: 200px;
+        }
+        .texto{
+          .wrapper{
+            max-height: calc(90vh - 200px);
+            .nombre{
+              font-size: 20px;
+            }
+            .actions{
+              flex-direction: column;
+              width: 100%;
+              margin: 20px auto;
+              .#{$pfx}botonTextoIcono{
+                margin: 20px auto 0 auto;
+              }
+              .#{$pfx}botonIcono{
+                position: absolute;
+                top: 10px;
+                right: 10px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 //Secciones

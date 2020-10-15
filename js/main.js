@@ -199,7 +199,7 @@ $(function(){
           <div class="modalContainer">
             <div class="topContent">
               <div class="imagenContainer zoom_section">
-                <div class="zoom_launcher zoomWatch">
+                <div class="zoom_launcher zoomWatch" title="Ampliar imagen">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
                     <path d="M2.002 40h22v22h-22z"></path>
                     <path d="M2 28V2h60v60H36"></path>
@@ -283,7 +283,7 @@ $(function(){
     });
   }
   function zoomImg(zoomArea, escala = 3){
-    if ($(window).width() > 480) {
+    if ($(window).width() > 768) {
       zoomArea.find('.zoom_launcher').fadeOut('fast');
       const imagen = zoomArea.find('.zoom_imgOrigin');
       const urlImagen = zoomArea.find('.zoom_imgSource')[0].style.backgroundImage;
@@ -334,7 +334,7 @@ $(function(){
         })
       })
     } else {
-      console.log('Solo disponible para pc');
+      console.warn('Solo disponible para pc');
     }
   }
 })
