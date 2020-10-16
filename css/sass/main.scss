@@ -65,6 +65,9 @@ body{
     pointer-events: none !important;
   }
 }
+.#{$pfx}notClickable{
+  pointer-events: none;
+}
 .#{$pfx}producto{
   width: 25%;
   min-width: 25%;
@@ -346,6 +349,7 @@ body{
   @include flex;
   border-radius: 100px;
   border: 1px solid $gris;
+  text-align: center;
   .toCartBoton{
     @include flex;
     width: 40px;
@@ -445,6 +449,48 @@ body{
     }
   }
 }
+.#{$pfx}botonTextoIconoInline{
+  @include flex;
+  padding: 5px 0;
+  color: $negro;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  position: relative;
+  &:hover{
+    &:after{
+      width: 100%;
+    }
+  }
+  &:after{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 0;
+    height: 1px;
+    background-color: currentColor;
+    transition: ease all .3s;
+  }
+  .icono{
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    svg{
+      path, circle{
+        fill: none;
+        stroke-width: 4;
+        stroke: currentColor;
+        stroke-miterlimit: 10;
+      }
+    }
+  }
+}
 .#{$pfx}botonIcono{
   border-radius: 50px;
   color: $secundario;
@@ -499,28 +545,6 @@ body{
         background-color: $gris;
         box-sizing: border-box;
         position: relative;
-        .zoomWatch{
-          position: absolute;
-          top: 20px;
-          left: 20px;
-          width: 20px;
-          height: 20px;
-          padding: 15px;
-          border-radius: 50%;
-          color: $negro;
-          background-color: $blanco;
-          box-shadow: 0 0 10px 0 rgba($negro,.1);
-          z-index: $zup;
-          cursor: pointer;
-          svg{
-            path{
-              fill: none;
-              stroke-width: 2;
-              stroke: currentColor;
-              stroke-miterlimit: 10;
-            }
-          }
-        }
         .wrapperImg{
           width: 100%;
           height: 100%;
@@ -529,32 +553,6 @@ body{
           position: relative;
           overflow: hidden;
           .imagen{
-            @include imagen($size: contain);
-            width: 100%;
-            height: 100%;
-          }
-          .zoom_lupa{
-            position: absolute;
-            top: 0;
-            left: 0;
-            opacity: .5;
-            background-color: $blanco;
-            border: 1px solid rgba($negro,.2);
-            box-sizing: border-box;
-            cursor: move;
-          }
-        }
-        .zoomImg{
-          display: none;
-          position: absolute;
-          top: 0;
-          left: 100%;
-          width: 100%;
-          height: 100%;
-          background-color: $blanco;
-          overflow: hidden;
-          z-index: $zup;
-          .zoom{
             @include imagen($size: contain);
             width: 100%;
             height: 100%;
@@ -665,7 +663,7 @@ body{
         }
         .imagenContainer{
           min-height: 250px;
-          .zoomWatch{
+          .zoomWatch_launcher{
             display: none;
           }
           .wrapperImg{
@@ -716,6 +714,105 @@ body{
     }
   }
 }
+.#{$pfx}zoomWatch_section{
+  .zoomWatch_launcher{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 20px;
+    height: 20px;
+    padding: 15px;
+    border-radius: 50%;
+    color: $negro;
+    background-color: $blanco;
+    box-shadow: 0 0 10px 0 rgba($negro,.1);
+    z-index: $zup;
+    cursor: pointer;
+    svg{
+      path{
+        fill: none;
+        stroke-width: 2;
+        stroke: currentColor;
+        stroke-miterlimit: 10;
+      }
+    }
+  }
+  .zoomWatch_lupa{
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: .5;
+    background-color: $blanco;
+    border: 1px solid rgba($negro,.2);
+    box-sizing: border-box;
+    cursor: move;
+    z-index: $zmodal;
+  }
+  .zoomWatch_imgAlt {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 100%;
+    height: 100%;
+    background-color: $blanco;
+    overflow: hidden;
+    z-index: $zup;
+    .zoom{
+      @include imagen($size: contain);
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+.#{$pfx}tabsViewer{
+  .headerTabs{
+    @include flex;
+    width: 100%;
+    border-bottom: 1px solid $gris;
+    user-select: none;
+    .#{$pfx}tabsHeader{
+      padding: 7px 20px;
+      position: relative;
+      cursor: pointer;
+      &.activa{
+        &:after{
+          width: 100%;
+        }
+      }
+      &:after{
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 0;
+        height: 3px;
+        margin: 0 auto;
+        transform: translateY(50%);
+        background-color: $primario;
+        transition: ease all .3s;
+      }
+    }
+  }
+  .contentTabs{
+    .#{$pfx}tabsContent{
+      display: none;
+      padding: 50px 20px;
+      text-align: center;
+      p{
+        margin-bottom: 10px;
+      }
+      .headerText{
+        margin-top: 40px;
+        font-size: 20px;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
 
 //Secciones
 .#{$pfx}slider{
@@ -849,7 +946,6 @@ body{
       .#{$pfx}container{
         .topBar{
           .logo{
-            width: 200px;
             height: 50px;
           }
         }
@@ -1059,6 +1155,10 @@ body{
       .#{$pfx}container{
         .topBar{
           padding: 0;
+          .logo{
+            width: 200px;
+            height: 80px;
+          }
           .icons{
             .#{$pfx}dropdown{
               display: none;
@@ -1600,6 +1700,214 @@ body{
           text-align: center;
         }
       }
+    }
+  }
+}
+
+//Vista - Detalle Producto
+.#{$pfx}detalleProducto{
+  .#{$pfx}container{
+    @include container;
+    padding: 50px 0;
+    .detalleWrapper{
+      @include flex($ai: flex-start);
+      width: 100%;
+      .preview{
+        width: 500px;
+        .imagenesContainer{
+          width: 100%;
+          position: relative;
+          border-radius: 10px;
+          border: 1px solid rgba($negro,.1);
+          box-shadow: 0 40px 20px -30px rgba($negro,.1);
+          box-sizing: border-box;
+          .zoomWatch_launcher{
+            z-index: $zmodal;
+          }
+          .imagenes{
+            width: 100%;
+            height: 400px;
+            padding: 20px;
+            position: relative;
+            box-sizing: border-box;
+            overflow: hidden;
+            [data-img]{
+              display: none;
+            }
+            .imagenProd{
+              @include imagen($size: contain);
+              width: 100%;
+              height: 100%;
+              background-color: $blanco;
+            }
+          }
+        }
+        .controls{
+          @include flex($wrap: nowrap);
+          width: 100%;
+          margin: 10px auto;
+          .control{
+            @include flex;
+            width: 60px;
+            height: 60px;
+            min-width: 60px;
+            cursor: pointer;
+            .icono{
+              width: 40px;
+              height: 40px;
+              cursor: pointer;
+              svg{
+                overflow: hidden;
+                path, circle{
+                  fill: none;
+                  stroke: $negro;
+                  stroke-miterlimit: 10;
+                  stroke-width: 2;
+                }
+              }
+            }
+          }
+          .dots{
+            @include flex;
+            max-width: 100%;
+            margin: 0 20px;
+            .dot{
+              width: 15px;
+              height: 15px;
+              margin: 5px;
+              border-radius: 50%;
+              background-color: $gris;
+              cursor: pointer;
+              transition: ease all .5s;
+              &.activa{
+                background-color: $primario;
+              }
+            }
+          }
+        }
+      }
+      .data{
+        width: calc(100% - 550px);
+        margin: auto 0 auto 50px;
+        .rows{
+          @include flex($jc: flex-start);
+          >*{
+            &:not(:last-child){
+              margin-right: 20px;
+            }
+          }
+        }
+        .bold{
+          font-weight: 600;
+        }
+        .stock{
+          @include flex($jc: flex-start);
+          width: 100%;
+          font-size: 12px;
+          &.out{
+            &:before{
+              background-color: red;
+            }
+          }
+          &:before{
+            content: "";
+            width: 10px;
+            height: 10px;
+            min-width: 10px;
+            margin-right: 5px;
+            border-radius: 50%;
+            background-color: green;
+          }
+        }
+        .nombre {
+          color: $negro;
+          font-size: 30px;
+          font-weight: 900;
+          margin-bottom: 10px;
+        }
+        .stars{
+          @include flex($jc: flex-start);
+          margin: 10px auto 20px auto;
+          .icono{
+            width: 20px;
+            height: 20px;
+            color: #cecece;
+            &.activo{
+              color: orange;
+            }
+            svg{
+              path{
+                fill: currentColor;
+                stroke-width: 2;
+                stroke-miterlimit: 10;
+              }
+            }
+          }
+        }
+        .precios{
+          @include flex($jc: flex-start);
+          margin-bottom: 20px;
+          .precio{
+            @include flex($jc: flex-start);
+            font-size: 30px;
+            font-weight: 900;
+            color: $secundario;
+            &:before{
+              font-size: 20px;
+              content: var(--currencyPrefix);
+            }
+          }
+          .precioOferta{
+            @extend .precio;
+            color: red;
+            font-size: 20px;
+            margin-left: 10px;
+            text-decoration: line-through;
+          }
+        }
+        .actions{
+          @include flex($jc: flex-start);
+          margin: 20px auto;
+          .aCarrito{
+            margin-left: 20px;
+          }
+          .bottomActions{
+            width: 100%;
+            .boton{
+              margin-top: 20px;
+            }
+          }
+        }
+        .compartir{
+          margin-top: 20px;
+          font-size: 12px;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+          .share{
+            .icono{
+              width: 35px;
+              height: 35px;
+              margin: 5px;
+              color: $primario;
+              transition: ease all .3s;
+              &:hover{
+                color: $secundario;
+              }
+              &:first-child{
+                margin-left: 0;
+              }
+              svg{
+                path{
+                  fill: currentColor;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .infoTabs{
+      margin-top: 30px;
     }
   }
 }

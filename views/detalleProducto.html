@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del producto</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&display=swap">
+    <link rel="stylesheet" href="../css/main.min.css">
+  </head>
+  <body>
+    <header class="tioDimer_menu">
+      <div class="fixedWrapper">
+        <div class="tioDimer_container">
+          <div class="topBar">
+            <a class="logo" href="#" style="background-image: url(../img/logo.png);"></a>
+            <div class="icons">
+              <div class="tioDimer_dropdown">
+                <div class="dropHeader">Moneda: <span class="currentValue">MXN</span></div>
+                <ul class="dropOptions">
+                  <li class="option" data-value="USD">USD</li>
+                  <li class="option" data-value="MXN">MXN</li>
+                </ul>
+              </div>
+              <div class="icono launcherMenu">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                  <path d="M2 14h60M2 32h36"></path>
+                  <path d="M2 50h60"></path>
+                </svg>
+              </div>
+              <div class="icono">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                  <path
+                    d="M50.9 55.3a12.2 12.2 0 0 0-4.3-1.7c-8.1-1.5-8.1-4.1-8.1-5.7v-1a14.8 14.8 0 0 0 4.2-7.1c2.5 0 3-5.1 3-5.9s.1-3.8-2.4-3.8c5.4-14.6-8.9-20.5-19.6-13-4.4 0-4.8 6.5-3.1 13-2.5 0-2.4 3.1-2.4 3.8s.6 5.9 3 5.9a14.8 14.8 0 0 0 4.3 7.2v1c0 1.6 0 4.2-8.1 5.7a11.9 11.9 0 0 0-4.3 1.6">
+                  </path>
+                  <circle cx="32" cy="32" r="30"></circle>
+                </svg>
+              </div>
+              <div class="icono">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                  <path
+                    d="M47 5c-6.5 0-12.9 4.2-15 10-2.1-5.8-8.5-10-15-10A15 15 0 0 0 2 20c0 13 11 26 30 39 19-13 30-26 30-39A15 15 0 0 0 47 5z">
+                  </path>
+                </svg>
+              </div>
+              <div class="icono">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                  <path
+                    d="M38 8.4A20 20 0 0 1 54 28v2m-44 0v-2A20 20 0 0 1 26 8.4M38 8a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4 4 4 0 0 1 4-4h4a4 4 0 0 1 4 4z">
+                  </path>
+                  <path d="M32 38v14M20 38v14m24-14v14M6.1 30L12 60h40l6-30M2 30h60"></path>
+                </svg>
+              </div>
+              <div class="icono">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                  <path d="M19 26.8V15A13 13 0 0 1 32 2a13 13 0 0 1 13 13M32 37v10"></path>
+                  <circle cx="32" cy="42" r="20"></circle>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <nav class="bottomBar">
+            <ul class="menuLinks">
+              <li class="link"><a href="#">Inicio</a></li>
+              <li class="link"><a href="#">Procesadores</a></li>
+              <li class="link"><a href="#">Gabinetes</a></li>
+              <li class="link">
+                <a href="#">Tarjetas de video</a>
+                <ul class="subMenu">
+                  <li class="link"><a href="#">Nvidia</a></li>
+                  <li class="link"><a href="#">Radeon</a></li>
+                </ul>
+              </li>
+              <li class="link">
+                <a href="#">Almacenamiento</a>
+                <ul class="subMenu">
+                  <li class="link"><a href="#">Discos duros</a></li>
+                  <li class="link"><a href="#">Enclosures</a></li>
+                  <li class="link"><a href="#">Externos</a></li>
+                  <li class="link"><a href="#">Internos</a></li>
+                  <li class="link"><a href="#">Unidades SSD</a></li>
+                </ul>
+              </li>
+              <li class="link">
+                <a href="#">Memorias</a>
+                <ul class="subMenu">
+                  <li class="link"><a href="#">Lectores de memorias</a></li>
+                  <li class="link"><a href="#">Micro SD</a></li>
+                  <li class="link"><a href="#">RAM para desktop</a></li>
+                  <li class="link"><a href="#">RAM para laptop</a></li>
+                  <li class="link"><a href="#">SD</a></li>
+                  <li class="link"><a href="#">Tarjetas MicroSD</a></li>
+                  <li class="link"><a href="#">USB</a></li>
+                </ul>
+              </li>
+              <li class="link">
+                <a href="#">Tarjetas madre</a>
+                <ul class="subMenu">
+                  <li class="link"><a href="#">AMD</a></li>
+                  <li class="link"><a href="#">Gamer</a></li>
+                  <li class="link"><a href="#">Intel</a></li>
+                </ul>
+              </li>
+              <li class="link">
+                <a href="#">Monitores</a>
+                <ul class="subMenu">
+                  <li class="link"><a href="#">15.6"</a></li>
+                  <li class="link"><a href="#">18.5"</a></li>
+                  <li class="link"><a href="#">19.5"</a></li>
+                  <li class="link"><a href="#">20"</a></li>
+                  <li class="link"><a href="#">21.5"</a></li>
+                  <li class="link"><a href="#">23"</a></li>
+                  <li class="link"><a href="#">23.5"</a></li>
+                  <li class="link"><a href="#">23.6"</a></li>
+                  <li class="link"><a href="#">23.8"</a></li>
+                  <li class="link"><a href="#">24"</a></li>
+                  <li class="link"><a href="#">25"</a></li>
+                  <li class="link"><a href="#">27"</a></li>
+                  <li class="link"><a href="#">28"</a></li>
+                  <li class="link"><a href="#">29"</a></li>
+                  <li class="link"><a href="#">31.5"</a></li>
+                  <li class="link"><a href="#">32"</a></li>
+                  <li class="link"><a href="#">34"</a></li>
+                  <li class="link"><a href="#">LED</a></li>
+                  <li class="link"><a href="#">Workstation</a></li>
+                </ul>
+              </li>
+              <li class="link">
+                <a href="#">Energia</a>
+                <ul class="subMenu">
+                  <li class="link"><a href="#">Baterias</a></li>
+                  <li class="link"><a href="#">Fuentes de poder</a></li>
+                  <li class="link"><a href="#">No breaks</a></li>
+                  <li class="link"><a href="#">Nvidia</a></li>
+                  <li class="link"><a href="#">Reguladores</a></li>
+                  <li class="link"><a href="#">Supresores</a></li>
+                </ul>
+              </li>
+              <li class="link">
+                <a href="#">Flexone PC</a>
+                <ul class="subMenu">
+                  <li class="link"><a href="#">Flexone PC</a></li>
+                  <li class="link"><a href="#">Garage</a></li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+
+    <section class="tioDimer_detalleProducto">
+      <div class="tioDimer_container">
+        <div class="detalleWrapper">
+          <div class="preview">
+            <div class="imagenesContainer tioDimer_zoomWatch_section">
+              <div class="zoomWatch_launcher" title="Ampliar imagen">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                  <path d="M2.002 40h22v22h-22z"></path>
+                  <path d="M2 28V2h60v60H36"></path>
+                  <path d="M30 34l22-22m-16 0h16v16"></path>
+                </svg>
+              </div>
+              <div class="imagenes zoomWatch_imgOrigin">
+                <div class="imagenProd zoomWatch_imgSource"></div>
+                <div data-img="../img/producto1.png"></div>
+                <div data-img="../img/producto2.png"></div>
+                <div data-img="../img/producto3.png"></div>
+              </div>
+            </div>
+          </div>
+          <div class="data">
+            <p class="nombre">Tarjeta de video Gigabyte GTX 1650 D6 OC 4GB GDDR6</p>
+            <div class="rows">
+              <p class="fecha">Marca: <span class="bold">Gigabyte</span></p>
+              <p class="fecha">Codigo del producto: <span class="bold">H410M-APRO</span></p>
+            </div>
+            <div class="stars">
+              <div class="star icono activo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                  <path d="M32 48L15 58l4-19L5 26l19-2 8-18 8 18 19 2-14 13 4 19-17-10z"></path>
+                </svg>
+              </div>
+              <div class="star icono activo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                  <path d="M32 48L15 58l4-19L5 26l19-2 8-18 8 18 19 2-14 13 4 19-17-10z"></path>
+                </svg>
+              </div>
+              <div class="star icono activo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                  <path d="M32 48L15 58l4-19L5 26l19-2 8-18 8 18 19 2-14 13 4 19-17-10z"></path>
+                </svg>
+              </div>
+              <div class="star icono">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                  <path d="M32 48L15 58l4-19L5 26l19-2 8-18 8 18 19 2-14 13 4 19-17-10z"></path>
+                </svg>
+              </div>
+              <div class="star icono">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                  <path d="M32 48L15 58l4-19L5 26l19-2 8-18 8 18 19 2-14 13 4 19-17-10z"></path>
+                </svg>
+              </div>
+            </div>
+            <div class="precios">
+              <p class="precio">7600</p>
+              <p class="precioOferta">7600</p>
+              <p class="stock bold">Disponible en tienda y listo para enviar</p>
+            </div>
+            <div class="actions">
+              <div class="tioDimer_toCartCantidad">
+                <div class="toCartBoton menos tioDimer_disabled"></div>
+                <div class="toCartCantidad">1</div>
+                <div class="toCartBoton mas"></div>
+              </div>
+              <div class="tioDimer_botonTextoIcono aCarrito">
+                <label class="labelBoton">Agregar al carrito</label>
+                <div class="icono">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                    <path d="M2 6h10l10 40h32l8-24H16"></path>
+                    <circle cx="23" cy="54" r="4"></circle>
+                    <circle cx="49" cy="54" r="4"></circle>
+                  </svg>
+                </div>
+              </div>
+              <div class="rows bottomActions">
+                <div class="boton aFavs tioDimer_botonTextoIconoInline">
+                  <div class="icono">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                      <path d="M47 5c-6.5 0-12.9 4.2-15 10-2.1-5.8-8.5-10-15-10A15 15 0 0 0 2 20c0 13 11 26 30 39 19-13 30-26 30-39A15 15 0 0 0 47 5z"></path>
+                    </svg>
+                  </div>
+                  <p class="labelBoton">Agregar a favoritos</p>
+                </div>
+                <div class="boton aComparar tioDimer_botonTextoIconoInline">
+                  <div class="icono">
+                    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M53 22l8-8-8-8m0 52l8-8-8-8"></path>
+                      <path d="M32.1 27.3l6.8-9.3M23 32a11.3 11.3 0 0 0 9.1-4.7m6.8-9.3a11 11 0 0 1 8.5-4H61M32.1 36.7l6.8 9.3M2 32h21a11.4 11.4 0 0 1 9.2 4.7m6.7 9.3a11 11 0 0 0 8.5 4H61"></path>
+                    </svg>
+                  </div>
+                  <p class="labelBoton">Comparar</p>
+                </div>
+              </div>
+            </div>
+            <p>Alimentado por la arquitectura GeForce GTX 1650 NVIDIA Turing y GeForce Experience Integrado con 4 GB GDDR6 128 bit
+            interfaz de memoria WINDFORCE 2X Sistema de enfriamiento con ventiladores giratorios alternativos de 80 mm ventiladores
+            de hoja únicos Core Clock: 1710 MHz</p>
+            <div class="compartir">
+              <p class="bold">Compartir:</p>
+              <div class="rows share">
+                <a class="icono" href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path
+                      d="M14.467,6.707c-0.34,0.198-0.715,0.342-1.115,0.419c-0.318-0.335-0.775-0.545-1.279-0.545c-0.969,0-1.754,0.773-1.754,1.727c0,0.135,0.015,0.267,0.045,0.394C8.905,8.628,7.612,7.94,6.747,6.896C6.596,7.151,6.509,7.448,6.509,7.764c0,0.599,0.31,1.128,0.78,1.438C7.002,9.192,6.732,9.115,6.495,8.985c0,0.007,0,0.014,0,0.021c0,0.837,0.605,1.535,1.408,1.694c-0.147,0.04-0.302,0.06-0.462,0.06c-0.113,0-0.223-0.011-0.33-0.031c0.223,0.687,0.871,1.186,1.638,1.199c-0.6,0.464-1.356,0.739-2.179,0.739c-0.142,0-0.281-0.007-0.418-0.023c0.777,0.489,1.699,0.775,2.689,0.775c3.228,0,4.991-2.63,4.991-4.913c0-0.075-0.002-0.149-0.004-0.223c0.342-0.244,0.639-0.547,0.875-0.894c-0.316,0.137-0.652,0.23-1.008,0.272C14.057,7.448,14.336,7.11,14.467,6.707 M10,0.594c-5.195,0-9.406,4.211-9.406,9.406c0,5.195,4.211,9.406,9.406,9.406c5.196,0,9.407-4.211,9.407-9.406C19.406,4.805,15.195,0.594,10,0.594 M10,18.552c-4.723,0-8.551-3.829-8.551-8.552S5.277,1.449,10,1.449c4.723,0,8.551,3.829,8.551,8.551S14.723,18.552,10,18.552">
+                    </path>
+                  </svg>
+                </a>
+                <a class="icono" href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path
+                      d="M10,0.5c-5.247,0-9.5,4.253-9.5,9.5c0,5.247,4.253,9.5,9.5,9.5c5.247,0,9.5-4.253,9.5-9.5C19.5,4.753,15.247,0.5,10,0.5 M10,18.637c-4.77,0-8.636-3.867-8.636-8.637S5.23,1.364,10,1.364S18.637,5.23,18.637,10S14.77,18.637,10,18.637 M10.858,7.949c0-0.349,0.036-0.536,0.573-0.536h0.719v-1.3H11c-1.38,0-1.866,0.65-1.866,1.743v0.845h-0.86V10h0.86v3.887h1.723V10h1.149l0.152-1.299h-1.302L10.858,7.949z">
+                    </path>
+                  </svg>
+                </a>
+                <a class="icono" href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path
+                      d="M9.62,8.236h0.179c0.396,0,0.716-0.318,0.716-0.711V6.368c0-0.393-0.32-0.711-0.716-0.711H9.62c-0.396,0-0.716,0.318-0.716,0.711v1.157C8.904,7.917,9.224,8.236,9.62,8.236 M9.44,6.324c0-0.147,0.121-0.267,0.269-0.267c0.148,0,0.269,0.12,0.269,0.267v1.245c0,0.147-0.12,0.267-0.269,0.267c-0.148,0-0.269-0.12-0.269-0.267V6.324z M11.41,8.236c0.357,0,0.671-0.312,0.671-0.312v0.267h0.537V5.657h-0.537v1.957c0,0-0.18,0.222-0.358,0.222c-0.18,0-0.18-0.134-0.18-0.134V5.657h-0.536V7.88C11.007,7.88,11.052,8.236,11.41,8.236 M7.517,8.191h0.626V6.812l0.716-1.957H8.277L7.83,6.146l-0.447-1.29H6.756l0.76,1.957V8.191z M11.052,11.139c-0.116,0-0.207,0.068-0.269,0.135v1.794c0.057,0.061,0.141,0.119,0.269,0.119c0.269,0,0.269-0.299,0.269-0.299v-1.451C11.32,11.437,11.275,11.139,11.052,11.139 M10,0.469c-5.264,0-9.531,4.267-9.531,9.531c0,5.264,4.267,9.531,9.531,9.531c5.264,0,9.531-4.268,9.531-9.531C19.531,4.736,15.264,0.469,10,0.469 M10,18.665c-4.786,0-8.665-3.879-8.665-8.665c0-4.785,3.879-8.665,8.665-8.665c4.786,0,8.665,3.88,8.665,8.665C18.665,14.786,14.786,18.665,10,18.665 M13.289,8.792c0,0-1.642-0.085-3.289-0.085c-1.642,0-3.289,0.085-3.289,0.085c-0.742,0-1.343,0.573-1.343,1.28c0,0-0.134,0.831-0.134,1.664c0,0.831,0.134,1.664,0.134,1.664c0,0.708,0.601,1.28,1.343,1.28c0,0,1.616,0.086,3.289,0.086c1.615,0,3.289-0.086,3.289-0.086c0.741,0,1.343-0.572,1.343-1.28c0,0,0.134-0.84,0.134-1.664c0-0.84-0.134-1.664-0.134-1.664C14.632,9.365,14.03,8.792,13.289,8.792 M8.054,10.242H7.382v3.372H6.756v-3.372H6.084V9.688h1.969V10.242z M9.754,13.614H9.217v-0.257c0,0-0.313,0.299-0.671,0.299c-0.357,0-0.402-0.342-0.402-0.342v-2.646H8.68v2.475c0,0,0,0.129,0.179,0.129c0.179,0,0.358-0.214,0.358-0.214v-2.39h0.537V13.614z M11.856,12.974c0,0,0,0.683-0.491,0.683c-0.302,0-0.485-0.16-0.583-0.283v0.241h-0.581V9.688h0.581v1.273c0.089-0.094,0.308-0.292,0.583-0.292c0.357,0,0.491,0.298,0.491,0.683V12.974z M13.96,11.395v0.854h-1.118v0.64c0,0,0,0.299,0.268,0.299c0.27,0,0.27-0.299,0.27-0.299v-0.299h0.581v0.47c0,0-0.09,0.598-0.805,0.598c-0.717,0-0.851-0.598-0.851-0.598v-1.664c0,0,0-0.726,0.851-0.726C14.005,10.669,13.96,11.395,13.96,11.395 M13.109,11.139c-0.268,0-0.268,0.298-0.268,0.298v0.384h0.537v-0.384C13.379,11.437,13.379,11.139,13.109,11.139">
+                    </path>
+                  </svg>
+                </a>
+                <a class="icono" href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path
+                      d="M9.969,0.594c-5.195,0-9.406,4.211-9.406,9.406c0,5.195,4.211,9.406,9.406,9.406c5.195,0,9.406-4.211,9.406-9.406C19.375,4.805,15.164,0.594,9.969,0.594 M9.969,18.552c-4.723,0-8.551-3.829-8.551-8.552s3.829-8.551,8.551-8.551S18.521,5.277,18.521,10S14.691,18.552,9.969,18.552 M12.534,5.724H7.403c-0.944,0-1.71,0.766-1.71,1.71v5.131c0,0.944,0.766,1.71,1.71,1.71h5.131c0.944,0,1.71-0.766,1.71-1.71V7.435C14.244,6.49,13.479,5.724,12.534,5.724M11.679,7.007h1.283V8.29h-1.283V7.007z M9.969,8.29c0.944,0,1.71,0.766,1.71,1.71s-0.766,1.71-1.71,1.71s-1.71-0.766-1.71-1.71S9.024,8.29,9.969,8.29 M13.39,12.565c0,0.472-0.384,0.854-0.855,0.854H7.403c-0.472,0-0.855-0.383-0.855-0.854V9.573h0.898C7.423,9.712,7.403,9.854,7.403,10c0,1.417,1.149,2.565,2.565,2.565c1.416,0,2.565-1.148,2.565-2.565c0-0.146-0.02-0.288-0.043-0.427h0.898V12.565z">
+                    </path>
+                  </svg>
+                </a>
+                <a class="icono" href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path
+                      d="M10,0.562c-5.212,0-9.438,4.226-9.438,9.438c0,5.213,4.226,9.438,9.438,9.438c5.212,0,9.438-4.225,9.438-9.438C19.438,4.788,15.212,0.562,10,0.562 M10,18.58c-4.738,0-8.58-3.841-8.58-8.58c0-4.738,3.842-8.58,8.58-8.58c4.737,0,8.579,3.841,8.579,8.58C18.579,14.739,14.737,18.58,10,18.58 M10.033,10.346C9.813,10.183,9.608,9.94,9.6,9.865c0-0.128,0-0.188,0.303-0.435c0.393-0.322,0.609-0.745,0.609-1.192c0-0.387-0.108-0.731-0.293-0.982h0.164l0.908-0.688H8.832c-0.986,0-1.851,0.774-1.851,1.657c0,0.912,0.667,1.604,1.565,1.642C8.533,9.933,8.525,9.996,8.525,10.06c0,0.131,0.03,0.257,0.09,0.378c-1.113,0.007-2.05,0.752-2.05,1.632c0,0.789,0.902,1.362,2.145,1.362c1.343,0,2.067-0.84,2.067-1.631C10.778,11.143,10.576,10.748,10.033,10.346 M8.026,8.198C7.985,7.869,8.054,7.565,8.212,7.384c0.096-0.11,0.22-0.169,0.358-0.169V7.036l0.016,0.179c0.412,0.014,0.807,0.501,0.88,1.086c0.042,0.335-0.03,0.647-0.191,0.833c-0.096,0.11-0.217,0.169-0.367,0.168h0C8.503,9.29,8.1,8.784,8.026,8.198 M8.707,12.749c-0.612,0-1.093-0.394-1.093-0.897c0-0.461,0.562-0.865,1.202-0.865v-0.18h0l0.017,0.18c0.138,0.002,0.272,0.022,0.399,0.062l0.126,0.092c0.326,0.231,0.498,0.363,0.549,0.575c0.013,0.056,0.019,0.111,0.019,0.167C9.927,12.458,9.517,12.749,8.707,12.749M13.43,6.993h-0.858v1.288H11.28V9.14h1.291v1.283h0.858V9.14h1.293V8.281H13.43V6.993z">
+                    </path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="infoTabs tioDimer_tabsViewer">
+          <div class="headerTabs">
+            <div class="tabsHeader tioDimer_tabsHeader" data-tab="1">Descripción</div>
+            <div class="tabsHeader tioDimer_tabsHeader" data-tab="2">Reviews (3)</div>
+            <div class="tabsHeader tioDimer_tabsHeader" data-tab="3">Fotos</div>
+          </div>
+          <div class="contentTabs">
+            <div class="tabsContent tioDimer_tabsContent" data-tab="1">
+              <p>La tarjeta gráfica GeForce GTX 1650 SUPER es hasta 50% más rápida que la GTX 1650 original y hasta 2X más rápida que la
+              GTX 1050 de la generación anterior. Gracias a la premiada arquitectura NVIDIA Turing™ y la memoria GDDR6 ultrarrápida,
+              esta tarjeta es el supercargador para los juegos más populares de la actualidad. Es hora de equiparte y recibir
+              SUPERPODERES.</p>
+              <p>Alimentado por la arquitectura GeForce GTX 1650 NVIDIA Turing y GeForce Experience Integrado con 4 GB GDDR6 128 bit
+              interfaz de memoria WINDFORCE 2X Sistema de enfriamiento con ventiladores giratorios alternativos de 80 mm ventiladores
+              de hoja únicos Core Clock: 1710 MHz</p>
+              <p class="headerText">Tecnología de sombreado turing</p>
+              <p>Los sombreadores Turing cuentan con una ejecución concurrente de operación completa, tecnología de sombreado adaptable y
+              una nueva arquitectura de memoria unificada (con el doble de caché que su predecesora), permiten incrementos increíbles
+              en el rendimiento de los juegos de hoy. Obtén un rendimiento de 1.4 veces mejor que la generación anterior para
+              disfrutar de una experiencia de juego más rápida y silenciosa (generando menos calor).</p>
+              <p class="headerText">Frames win games</p>
+              <p>Los juegos Battle Royale necesitan el valor más alto de FPS. Logra esta ventaja competitiva que necesitas con GeForce.</p>
+              <p class="headerText">Nvidia Studio: Transforma el concepto en realidad más rápido</p>
+              <p>Creación sin límites. Studio combina las GPU NVIDIA GeForce con los exclusivos drivers NVIDIA Studio, que se diseñaron
+              para supercargar las aplicaciones creativas. Logra una importante mejora en cuanto al rendimiento y la confiabilidad con
+              la que podrás crear a la velocidad de tu imaginación.</p>
+              <p class="headerText">Geforce Experience</p>
+              <p>Realiza y comparte videos, capturas de pantalla y transmisiones en vivo con amigos. Asegúrate de que los drivers GeForce
+              estén actualizados y optimiza la configuración de los juegos. GeForce Experience™ te permite hacer todo esto. Es el
+              complemento esencial para tu tarjeta gráfica GeForce.</p>
+              <p class="headerText">Nvidia ansel</p>
+              <p>Este poderoso modo fotográfico te permite capturar fotografías de calidad profesional en los juegos como nunca antes.
+              Ahora, puedes capturar y compartir tus experiencias de juego más brillantes con fotografías de 360 grados, HDR y en
+              estéreo.</p>
+              <p class="headerText">Transforma profesionales</p>
+              <p>Lo mejor de ambos mundos. La serie GeForce GTX® 1650 SUPER™ cuenta con un codificador de hardware dedicado que libera el
+              potencial para jugar y transmitir en simultáneo con la máxima calidad. Las tarjetas gráficas SUPER se optimizaron para
+              tus aplicaciones de transmisión favoritas, para ofrecer el mejor rendimiento a la hora de transmitir en vivo.</p>
+            </div>
+            <div class="tabsContent tioDimer_tabsContent" data-tab="2">Content 2</div>
+            <div class="tabsContent tioDimer_tabsContent" data-tab="3">Content 3</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="tioDimer_footer">
+      <div class="tioDimer_container">
+        <a class="logo" href="#" style="background-image: url(../img/logo.png);"></a>
+        <div class="links">
+          <a class="link" href="#">Acerca de Nosotros</a>
+          <a class="link" href="#">Información de Envios</a>
+          <a class="link" href="#">Aviso de Privacidad</a>
+          <a class="link" href="#">Terminos y Condiciones</a>
+          <a class="link" href="#">Formas de Pago</a>
+          <a class="link" href="#">Como Comprar</a>
+          <a class="link" href="#">Garantias</a>
+          <a class="link" href="#">Devoluciones</a>
+          <a class="link" href="#">Marcas</a>
+          <a class="link" href="#">Certificados de Regalos</a>
+          <a class="link" href="#">Ofertas</a>
+        </div>
+        <div class="bottomBar">
+          <div class="social">
+            <a class="icono" href="#">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <path
+                  d="M14.467,6.707c-0.34,0.198-0.715,0.342-1.115,0.419c-0.318-0.335-0.775-0.545-1.279-0.545c-0.969,0-1.754,0.773-1.754,1.727c0,0.135,0.015,0.267,0.045,0.394C8.905,8.628,7.612,7.94,6.747,6.896C6.596,7.151,6.509,7.448,6.509,7.764c0,0.599,0.31,1.128,0.78,1.438C7.002,9.192,6.732,9.115,6.495,8.985c0,0.007,0,0.014,0,0.021c0,0.837,0.605,1.535,1.408,1.694c-0.147,0.04-0.302,0.06-0.462,0.06c-0.113,0-0.223-0.011-0.33-0.031c0.223,0.687,0.871,1.186,1.638,1.199c-0.6,0.464-1.356,0.739-2.179,0.739c-0.142,0-0.281-0.007-0.418-0.023c0.777,0.489,1.699,0.775,2.689,0.775c3.228,0,4.991-2.63,4.991-4.913c0-0.075-0.002-0.149-0.004-0.223c0.342-0.244,0.639-0.547,0.875-0.894c-0.316,0.137-0.652,0.23-1.008,0.272C14.057,7.448,14.336,7.11,14.467,6.707 M10,0.594c-5.195,0-9.406,4.211-9.406,9.406c0,5.195,4.211,9.406,9.406,9.406c5.196,0,9.407-4.211,9.407-9.406C19.406,4.805,15.195,0.594,10,0.594 M10,18.552c-4.723,0-8.551-3.829-8.551-8.552S5.277,1.449,10,1.449c4.723,0,8.551,3.829,8.551,8.551S14.723,18.552,10,18.552">
+                </path>
+              </svg>
+            </a>
+            <a class="icono" href="#">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <path
+                  d="M10,0.5c-5.247,0-9.5,4.253-9.5,9.5c0,5.247,4.253,9.5,9.5,9.5c5.247,0,9.5-4.253,9.5-9.5C19.5,4.753,15.247,0.5,10,0.5 M10,18.637c-4.77,0-8.636-3.867-8.636-8.637S5.23,1.364,10,1.364S18.637,5.23,18.637,10S14.77,18.637,10,18.637 M10.858,7.949c0-0.349,0.036-0.536,0.573-0.536h0.719v-1.3H11c-1.38,0-1.866,0.65-1.866,1.743v0.845h-0.86V10h0.86v3.887h1.723V10h1.149l0.152-1.299h-1.302L10.858,7.949z">
+                </path>
+              </svg>
+            </a>
+            <a class="icono" href="#">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <path
+                  d="M9.62,8.236h0.179c0.396,0,0.716-0.318,0.716-0.711V6.368c0-0.393-0.32-0.711-0.716-0.711H9.62c-0.396,0-0.716,0.318-0.716,0.711v1.157C8.904,7.917,9.224,8.236,9.62,8.236 M9.44,6.324c0-0.147,0.121-0.267,0.269-0.267c0.148,0,0.269,0.12,0.269,0.267v1.245c0,0.147-0.12,0.267-0.269,0.267c-0.148,0-0.269-0.12-0.269-0.267V6.324z M11.41,8.236c0.357,0,0.671-0.312,0.671-0.312v0.267h0.537V5.657h-0.537v1.957c0,0-0.18,0.222-0.358,0.222c-0.18,0-0.18-0.134-0.18-0.134V5.657h-0.536V7.88C11.007,7.88,11.052,8.236,11.41,8.236 M7.517,8.191h0.626V6.812l0.716-1.957H8.277L7.83,6.146l-0.447-1.29H6.756l0.76,1.957V8.191z M11.052,11.139c-0.116,0-0.207,0.068-0.269,0.135v1.794c0.057,0.061,0.141,0.119,0.269,0.119c0.269,0,0.269-0.299,0.269-0.299v-1.451C11.32,11.437,11.275,11.139,11.052,11.139 M10,0.469c-5.264,0-9.531,4.267-9.531,9.531c0,5.264,4.267,9.531,9.531,9.531c5.264,0,9.531-4.268,9.531-9.531C19.531,4.736,15.264,0.469,10,0.469 M10,18.665c-4.786,0-8.665-3.879-8.665-8.665c0-4.785,3.879-8.665,8.665-8.665c4.786,0,8.665,3.88,8.665,8.665C18.665,14.786,14.786,18.665,10,18.665 M13.289,8.792c0,0-1.642-0.085-3.289-0.085c-1.642,0-3.289,0.085-3.289,0.085c-0.742,0-1.343,0.573-1.343,1.28c0,0-0.134,0.831-0.134,1.664c0,0.831,0.134,1.664,0.134,1.664c0,0.708,0.601,1.28,1.343,1.28c0,0,1.616,0.086,3.289,0.086c1.615,0,3.289-0.086,3.289-0.086c0.741,0,1.343-0.572,1.343-1.28c0,0,0.134-0.84,0.134-1.664c0-0.84-0.134-1.664-0.134-1.664C14.632,9.365,14.03,8.792,13.289,8.792 M8.054,10.242H7.382v3.372H6.756v-3.372H6.084V9.688h1.969V10.242z M9.754,13.614H9.217v-0.257c0,0-0.313,0.299-0.671,0.299c-0.357,0-0.402-0.342-0.402-0.342v-2.646H8.68v2.475c0,0,0,0.129,0.179,0.129c0.179,0,0.358-0.214,0.358-0.214v-2.39h0.537V13.614z M11.856,12.974c0,0,0,0.683-0.491,0.683c-0.302,0-0.485-0.16-0.583-0.283v0.241h-0.581V9.688h0.581v1.273c0.089-0.094,0.308-0.292,0.583-0.292c0.357,0,0.491,0.298,0.491,0.683V12.974z M13.96,11.395v0.854h-1.118v0.64c0,0,0,0.299,0.268,0.299c0.27,0,0.27-0.299,0.27-0.299v-0.299h0.581v0.47c0,0-0.09,0.598-0.805,0.598c-0.717,0-0.851-0.598-0.851-0.598v-1.664c0,0,0-0.726,0.851-0.726C14.005,10.669,13.96,11.395,13.96,11.395 M13.109,11.139c-0.268,0-0.268,0.298-0.268,0.298v0.384h0.537v-0.384C13.379,11.437,13.379,11.139,13.109,11.139">
+                </path>
+              </svg>
+            </a>
+            <a class="icono" href="#">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <path
+                  d="M9.969,0.594c-5.195,0-9.406,4.211-9.406,9.406c0,5.195,4.211,9.406,9.406,9.406c5.195,0,9.406-4.211,9.406-9.406C19.375,4.805,15.164,0.594,9.969,0.594 M9.969,18.552c-4.723,0-8.551-3.829-8.551-8.552s3.829-8.551,8.551-8.551S18.521,5.277,18.521,10S14.691,18.552,9.969,18.552 M12.534,5.724H7.403c-0.944,0-1.71,0.766-1.71,1.71v5.131c0,0.944,0.766,1.71,1.71,1.71h5.131c0.944,0,1.71-0.766,1.71-1.71V7.435C14.244,6.49,13.479,5.724,12.534,5.724M11.679,7.007h1.283V8.29h-1.283V7.007z M9.969,8.29c0.944,0,1.71,0.766,1.71,1.71s-0.766,1.71-1.71,1.71s-1.71-0.766-1.71-1.71S9.024,8.29,9.969,8.29 M13.39,12.565c0,0.472-0.384,0.854-0.855,0.854H7.403c-0.472,0-0.855-0.383-0.855-0.854V9.573h0.898C7.423,9.712,7.403,9.854,7.403,10c0,1.417,1.149,2.565,2.565,2.565c1.416,0,2.565-1.148,2.565-2.565c0-0.146-0.02-0.288-0.043-0.427h0.898V12.565z">
+                </path>
+              </svg>
+            </a>
+            <a class="icono" href="#">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <path
+                  d="M10,0.562c-5.212,0-9.438,4.226-9.438,9.438c0,5.213,4.226,9.438,9.438,9.438c5.212,0,9.438-4.225,9.438-9.438C19.438,4.788,15.212,0.562,10,0.562 M10,18.58c-4.738,0-8.58-3.841-8.58-8.58c0-4.738,3.842-8.58,8.58-8.58c4.737,0,8.579,3.841,8.579,8.58C18.579,14.739,14.737,18.58,10,18.58 M10.033,10.346C9.813,10.183,9.608,9.94,9.6,9.865c0-0.128,0-0.188,0.303-0.435c0.393-0.322,0.609-0.745,0.609-1.192c0-0.387-0.108-0.731-0.293-0.982h0.164l0.908-0.688H8.832c-0.986,0-1.851,0.774-1.851,1.657c0,0.912,0.667,1.604,1.565,1.642C8.533,9.933,8.525,9.996,8.525,10.06c0,0.131,0.03,0.257,0.09,0.378c-1.113,0.007-2.05,0.752-2.05,1.632c0,0.789,0.902,1.362,2.145,1.362c1.343,0,2.067-0.84,2.067-1.631C10.778,11.143,10.576,10.748,10.033,10.346 M8.026,8.198C7.985,7.869,8.054,7.565,8.212,7.384c0.096-0.11,0.22-0.169,0.358-0.169V7.036l0.016,0.179c0.412,0.014,0.807,0.501,0.88,1.086c0.042,0.335-0.03,0.647-0.191,0.833c-0.096,0.11-0.217,0.169-0.367,0.168h0C8.503,9.29,8.1,8.784,8.026,8.198 M8.707,12.749c-0.612,0-1.093-0.394-1.093-0.897c0-0.461,0.562-0.865,1.202-0.865v-0.18h0l0.017,0.18c0.138,0.002,0.272,0.022,0.399,0.062l0.126,0.092c0.326,0.231,0.498,0.363,0.549,0.575c0.013,0.056,0.019,0.111,0.019,0.167C9.927,12.458,9.517,12.749,8.707,12.749M13.43,6.993h-0.858v1.288H11.28V9.14h1.291v1.283h0.858V9.14h1.293V8.281H13.43V6.993z">
+                </path>
+              </svg>
+            </a>
+          </div>
+          <p class="legend">© 2020 Bakuretsu. Todos los derechos reservados</p>
+        </div>
+      </div>
+    </section>
+    <script type="text/javascript" src="../js/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="../fakeDB.js"></script>
+    <script type="text/javascript" src="../js/main.js"></script>
+  </body>
+</html>

@@ -149,7 +149,7 @@ $(function(){
   $(document).on('click', '.tioDimer_aFavs', function(){
     $(this).toggleClass('esFav');
   })
-  $(document).on('click', '.tioDimer_infoRapidaModal .zoomWatch', function(){
+  $(document).on('click', '.zoomWatch_launcher', function(){
     var areaImagen = $(this).parent();
     zoomImg(areaImagen);
   })
@@ -160,6 +160,93 @@ $(function(){
       })
     }
   })
+
+  //Crear dots para las imagenes y activar la primer imagen
+  if ($('.tioDimer_detalleProducto .preview').length) {
+    let preview = $('.tioDimer_detalleProducto .preview');
+    let imagenes = preview.find('[data-img]');
+    let indexActiva = 0;
+    let backgroundImagen = preview.find('.imagenProd');
+    backgroundImagen.css('background-image', `url(${preview.find('[data-img]').first().data('img')})`);
+    if (imagenes.length > 1) {
+      let dots = '';
+      let arrayImagenes = [];
+      for (let i = 0; i < imagenes.length; i++) {
+        arrayImagenes.push($(imagenes[i]).data('img'));
+        dots += `<div class="dot ${i == 0 ? 'activa' : ''}"></div>`;
+      }
+      imagenes.remove();
+      $(`
+        <div class="controls">
+          <div class="control left">
+            <div class="icono">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                <path d="M14 31.998h36"></path>
+                <path d="M28 18L14 32l14 14"></path>
+              </svg>
+            </div>
+          </div>
+          <div class="dots">${dots}</div>
+          <div class="control right">
+            <div class="icono">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                <path d="M50 31.998H14"></path>
+                <path d="M36 18l14 14-14 14"></path>
+              </svg>
+            </div>
+          </div>
+        </div>`
+      ).insertAfter(preview.children('.imagenesContainer'));
+      preview.on('click', '.control', function () {
+        preview.find('.dot').removeClass('activa');
+        if ($(this).hasClass('left')) {
+          if (indexActiva == 0) {
+            indexActiva = arrayImagenes.length - 1;
+            preview.find('.dot').last().addClass('activa');
+          } else {
+            --indexActiva;
+            preview.find('.dot').eq(indexActiva).addClass('activa');
+          }
+        } else if ($(this).hasClass('right')) {
+          if (indexActiva < (imagenes.length - 1)) {
+            indexActiva++;
+            preview.find('.dot').eq(indexActiva).addClass('activa');
+          } else {
+            indexActiva = 0;
+            preview.find('.dot').first().addClass('activa');
+          }
+        }
+        backgroundImagen.css('background-image', `url(${arrayImagenes[indexActiva]})`);
+      })
+      preview.on('click', '.dot', function () {
+        indexActiva = $(this).index();
+        $(this).siblings('.activa').removeClass('activa');
+        $(this).addClass('activa');
+        backgroundImagen.css('background-image', `url(${arrayImagenes[indexActiva]})`);
+      })
+    }
+  }
+  //Si hay tabs las inicializamos
+  if ($('.tioDimer_tabsViewer').length) {
+    $('.tioDimer_tabsViewer').each(function(i, tabs){
+      $(tabs).find('.tioDimer_tabsHeader').first().addClass('activa');
+      $(tabs).find('.tioDimer_tabsContent').first().show();
+    })
+    $('.tioDimer_tabsViewer .tioDimer_tabsHeader').click(function(){
+      if (!$(this).hasClass('activa')) {
+        var tabId = $(this).data('tab');
+        var tabsHeaders = $(this).parent().children();
+        $(this).addClass('activa tioDimer_notClickable');
+        $(this).siblings().removeClass('activa').addClass('tioDimer_notClickable');
+        $(this).parents('.tioDimer_tabsViewer').find('.tioDimer_tabsContent:visible').fadeOut(function(){
+          $(this).siblings(`[data-tab="${tabId}"]`).fadeIn(function(){
+            tabsHeaders.removeClass('tioDimer_notClickable');
+          });
+        })
+      }
+    })
+  }
+
 
   function fixedMenu(){
     let topMenu = $('.tioDimer_menu').offset().top;
@@ -198,16 +285,16 @@ $(function(){
           <div class="closeModal"></div>
           <div class="modalContainer">
             <div class="topContent">
-              <div class="imagenContainer zoom_section">
-                <div class="zoom_launcher zoomWatch" title="Ampliar imagen">
+              <div class="imagenContainer tioDimer_zoomWatch_section">
+                <div class="zoomWatch_launcher" title="Ampliar imagen">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
                     <path d="M2.002 40h22v22h-22z"></path>
                     <path d="M2 28V2h60v60H36"></path>
                     <path d="M30 34l22-22m-16 0h16v16"></path>
                   </svg>
                 </div>
-                <div class="zoom_imgOrigin wrapperImg">
-                  <div class="zoom_imgSource imagen" style="background-image: url(${imagen});"></div>
+                <div class="zoomWatch_imgOrigin wrapperImg">
+                  <div class="zoomWatch_imgSource imagen" style="background-image: url(${imagen});"></div>
                 </div>
               </div>
               <div class="texto">
@@ -283,10 +370,10 @@ $(function(){
     });
   }
   function zoomImg(zoomArea, escala = 3){
-    if ($(window).width() > 768) {
-      zoomArea.find('.zoom_launcher').fadeOut('fast');
-      const imagen = zoomArea.find('.zoom_imgOrigin');
-      const urlImagen = zoomArea.find('.zoom_imgSource')[0].style.backgroundImage;
+    if ($(window).outerWidth() > 768) {
+      zoomArea.find('.zoomWatch_launcher').fadeOut('fast');
+      const imagen = zoomArea.find('.zoomWatch_imgOrigin');
+      const urlImagen = zoomArea.find('.zoomWatch_imgSource')[0].style.backgroundImage;
       const dimensiones = {
         imagen: {
           width: imagen.outerWidth(), height: imagen.outerHeight()
@@ -300,11 +387,11 @@ $(function(){
         backgroundSize: parseInt(imagen.css('padding')) ? `calc(100% - (${(parseInt(imagen.css('padding')) / 2) * escala}px))` : 'contain',
         transform: `scale(${escala}) translateX(${dimensiones.imagen.width / escala}px) translateY(${dimensiones.imagen.height / escala}px)`
       };
-      imagen.append(`<div class="zoom_lupa"></div>`);
-      zoomArea.append(`<div class="zoom_imgAlt zoomImg"><div class="zoom"></div></div>`);
-      const scaleArea = zoomArea.children('.zoom_imgAlt');
+      imagen.append(`<div class="zoomWatch_lupa"></div>`);
+      zoomArea.append(`<div class="zoomWatch_imgAlt zoomImg"><div class="zoom"></div></div>`);
+      const scaleArea = zoomArea.children('.zoomWatch_imgAlt');
       const zoom = scaleArea.children('.zoom');
-      const lupa = imagen.children('.zoom_lupa');
+      const lupa = imagen.children('.zoomWatch_lupa');
       scaleArea.fadeIn();
       zoom.css(estiloInicial);
       lupa.css(dimensiones.lupa);
@@ -328,7 +415,7 @@ $(function(){
       });
       imagen.mouseout(function(){
         lupa.remove();
-        zoomArea.find('.zoom_launcher').fadeIn('fast');
+        zoomArea.find('.zoomWatch_launcher').fadeIn('fast');
         scaleArea.fadeOut('fast', function(){
           scaleArea.remove();
         })
