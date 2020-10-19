@@ -776,6 +776,7 @@ body{
       position: relative;
       cursor: pointer;
       &.activa{
+        font-weight: 600;
         &:after{
           width: 100%;
         }
@@ -808,6 +809,87 @@ body{
         font-size: 20px;
         font-weight: 600;
         text-transform: uppercase;
+      }
+    }
+  }
+}
+.#{$pfx}tabla{
+  width: 800px;
+  max-width: 100%;
+  margin: 0 auto;
+  font-size: 14px;
+  border: 1px solid rgba($negro,.2);
+  .cols-2{
+    .tablaItem{
+      width: 50%;
+    }
+  }
+  .tablaHeader{
+    @include flex;
+    background-color: $gris;
+    border-bottom: 1px solid rgba($negro,.2);
+    .tablaItem{
+      padding: 15px 10px;
+      font-weight: 600;
+    }
+  }
+  .tablaContent{
+    @include flex;
+    .tablaGrupo{
+      width: 100%;
+      &:not(:last-child){
+        border-bottom: 1px solid rgba($negro,.2);
+      }
+      .headerGrupo{
+        padding: 20px 10px;
+        font-weight: 600;
+      }
+    }
+    .tablaRow{
+      @include flex;
+      width: 100%;
+      &:not(:first-child){
+        border-top: 1px solid rgba($negro,.2);
+      }
+    }
+  }
+  .tablaItem{
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    &:not(:last-child){
+      border-right: 1px solid rgba($negro,.2);
+    }
+    sup{
+      font-weight: 600;
+      position: relative;
+      &:after{
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: orange;
+      }
+    }
+  }
+}
+.#{$pfx}stars{
+  @include flex($jc: flex-start);
+  margin: 10px auto 20px auto;
+  .icono{
+    width: 20px;
+    height: 20px;
+    color: #cecece;
+    &.activo{
+      color: orange;
+    }
+    svg{
+      path{
+        fill: currentColor;
+        stroke-width: 2;
+        stroke-miterlimit: 10;
       }
     }
   }
@@ -1713,7 +1795,8 @@ body{
       @include flex($ai: flex-start);
       width: 100%;
       .preview{
-        width: 500px;
+        width: 100%;
+        max-width: 500px;
         .imagenesContainer{
           width: 100%;
           position: relative;
@@ -1721,9 +1804,6 @@ body{
           border: 1px solid rgba($negro,.1);
           box-shadow: 0 40px 20px -30px rgba($negro,.1);
           box-sizing: border-box;
-          .zoomWatch_launcher{
-            z-index: $zmodal;
-          }
           .imagenes{
             width: 100%;
             height: 400px;
@@ -1825,25 +1905,6 @@ body{
           font-weight: 900;
           margin-bottom: 10px;
         }
-        .stars{
-          @include flex($jc: flex-start);
-          margin: 10px auto 20px auto;
-          .icono{
-            width: 20px;
-            height: 20px;
-            color: #cecece;
-            &.activo{
-              color: orange;
-            }
-            svg{
-              path{
-                fill: currentColor;
-                stroke-width: 2;
-                stroke-miterlimit: 10;
-              }
-            }
-          }
-        }
         .precios{
           @include flex($jc: flex-start);
           margin-bottom: 20px;
@@ -1908,6 +1969,193 @@ body{
     }
     .infoTabs{
       margin-top: 30px;
+      .contentTabs{
+        .tabsContent{
+          .#{$pfx}tabla{
+            .tablaHeader{
+              background-color: $secundario;
+              .tablaItem{
+                color: $blanco;
+                font-size: 20px;
+              }
+            }
+          }
+          .reviewsContent{
+            width: 100%;
+            .review{
+              @include flex($ai: flex-start);
+              width: 100%;
+              padding: 20px 0;
+              text-align: left;
+              border-bottom: 1px dotted $gris;
+              .perfil{
+                @include flex;
+                width: 300px;
+                .avatar{
+                  @include imagen;
+                  width: 70px;
+                  height: 70px;
+                  min-width: 70px;
+                  margin-right: 10px;
+                  border-radius: 50%;
+                  box-shadow: 0 0 10px 0 $gris;
+                }
+                .texto{
+                  width: calc(100% - 80px);
+                  .nombre{
+                    font-size: 14px;
+                    font-weight: 600;
+                  }
+                }
+              }
+              .desc{
+                width: calc(100% - 300px);
+                .reviewActions{
+                  @include flex;
+                  margin-top: 20px;
+                  font-size: 14px;
+                  font-weight: 600;
+                  .like{
+                    @include flex;
+                    margin-right: 30px;
+                    cursor: pointer;
+                    &.up{
+                      .cantidad{
+                        color: green;
+                      }
+                    }
+                    &.down{
+                      .cantidad{
+                        color: red;
+                      }
+                    }
+                    .icon{
+                      width: 20px;
+                      height: 20px;
+                      svg{
+                        path, circle{
+                          fill: none;
+                          stroke: gray;
+                          stroke-miterlimit: 10;
+                          stroke-width: 2;
+                        }
+                      }
+                    }
+                    .cantidad{
+                      margin-left: 5px;
+                    }
+                  }
+                  .fecha{
+                    margin-left: auto;
+                    margin-bottom: 0;
+                    color: #cecece;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    @include desktop{
+      .detalleWrapper{
+        .preview{
+          .imagenesContainer{
+            .zoomWatch_launcher{
+              display: none;
+            }
+          }
+        }
+        .data{
+          width: 100%;
+          margin: 0 auto;
+          text-align: center;
+          .rows, .#{$pfx}stars, .precios, .stock, .actions{
+            justify-content: center;
+          }
+        }
+      }
+    }
+    @include tablet{
+      .infoTabs{
+        .contentTabs{
+          .tabsContent{
+            .reviewsContent{
+              .review{
+                flex-direction: column;
+                .perfil, .desc{
+                  width: 100%;
+                }
+                .perfil{
+                  margin-bottom: 10px;
+                  .avatar{
+                    width: 60px;
+                    height: 60px;
+                    min-width: 60px;
+                  }
+                  .texto{
+                    .#{$pfx}stars{
+                      margin-bottom: 0;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    @include mobile{
+      .detalleWrapper{
+        .preview{
+          .imagenesContainer{
+            .imagenes{
+              height: 300px;
+            }
+          }
+        }
+        .data{
+          .nombre{
+            font-size: 22px;
+          }
+          .rows{
+            >*{
+              &:not(:last-child){
+                margin-right: 0;
+              }
+            }
+          }
+          .actions{
+            flex-direction: column;
+            .aCarrito{
+              margin: 20px auto;
+            }
+          }
+          .compartir{
+            .share{
+              .icono{
+                &:first-child{
+                  margin: 10px;
+                }
+                margin: 10px;
+              }
+            }
+          }
+        }
+      }
+      .infoTabs{
+        .contentTabs{
+          .tabsContent{
+            padding: 20px 0;
+            p{
+              font-size: 14px;
+            }
+            .headerText{
+              font-size: 16px;
+            }
+          }
+        }
+      }
     }
   }
 }

@@ -238,8 +238,8 @@ $(function(){
         var tabsHeaders = $(this).parent().children();
         $(this).addClass('activa tioDimer_notClickable');
         $(this).siblings().removeClass('activa').addClass('tioDimer_notClickable');
-        $(this).parents('.tioDimer_tabsViewer').find('.tioDimer_tabsContent:visible').fadeOut(function(){
-          $(this).siblings(`[data-tab="${tabId}"]`).fadeIn(function(){
+        $(this).parents('.tioDimer_tabsViewer').find('.tioDimer_tabsContent:visible').fadeOut('fast', function(){
+          $(this).siblings(`[data-tab="${tabId}"]`).fadeIn('fast', function(){
             tabsHeaders.removeClass('tioDimer_notClickable');
           });
         })
